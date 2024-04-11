@@ -1,6 +1,6 @@
 # Support Server
 
-<a href="https://discord.gg/5q6zxM5vnT"><img src="https://discord.com/api/guilds/1142287130526224404/widget.png?style=banner2"></a>
+<a href="https://discord.gg/5q6zxM5vnT"><img src="https://discord.com/api/guilds/1142287130526224404/widget.png"></a>
 
 
 # Important notes and thank ❤️
