@@ -1,0 +1,130 @@
+.container {
+  background-color: #04022b; /* Black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #ffffff; /* White text color */
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  min-width: 600px; /* Set minimum width */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #0a081f; /* Set a lighter background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.track-image {
+  max-width: 165px;
+  max-height: 165px;
+  width: auto;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.progress-bar-container {
+  flex: 1; /* Fill the available space */
+  display: flex; /* Display children elements horizontally */
+  align-items: center; /* Center-align children elements vertically */
+  justify-content: flex-start; /* Align children to the start of the container */
+  position: relative; /* Position relative for absolute positioning */
+}
+
+.progress-bar {
+  flex: 1; /* Fill the available space */
+  height: 8px;
+  background-color: #333; /* Dark grey background */
+  border-radius: 4px;
+  margin-left: 10px; /* Add spacing between the progress bar and text */
+  min-width: 200px; /* Set minimum width */
+  overflow: hidden; /* Hide overflowing content */
+  position: relative; /* Ensure proper positioning of children */
+}
+
+.progress-bar-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #555; /* Slightly darker than the background */
+  width: 100%; /* Initially fills the entire progress bar */
+  z-index: 1; /* Ensure background is behind the fill */
+}
+
+.progress-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #beb8b8; /* Light grey fill */
+  width: <%= (data.track.current_progress / data.track.track_duration) * 100 %>%; /* Initially no width */
+  transition: width 0.5s ease; /* Add smooth transition for width changes */
+  z-index: 2; /* Ensure fill is above the background */
+}
+
+/* Styling for artist name */
+.artist-name {
+  font-weight: bold; /* Make the text bold */
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+.album-name {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+/* Styling for time display */
+.time-display {
+  display: flex;
+  justify-content: space-between;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  margin-top: 5px;
+  position: relative;
+  width: 100%;
+  bottom: -6px; /* Adjusted bottom position */
+  left: 0;
+}
+
+.time-display span {
+  position: relative;
+}
+
+.artist-name a,
+.album-name a {
+  color: white; /* Set the color of links to white */
+  text-decoration: none; /* Remove underline from links */
+  transition:
+    color 0.3s,
+    text-decoration 0.3s; /* Add transition effect for color and text-decoration */
+}
+
+.artist-name a:hover,
+.album-name a:hover {
+  text-decoration: underline; /* Underline links on hover */
+}
+
+.user-info {
+  position: absolute;
+  top: 20px;
+  right: 20px; /* Positioning in the top right corner */
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 60px; /* Doubled the width */
+  height: 60px; /* Doubled the height */
+  border-radius: 50%; /* Make the avatar round */
+  margin-right: 10px;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 26px; /* Doubled the font size */
+  color: white;
+}

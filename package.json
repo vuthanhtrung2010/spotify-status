@@ -1,0 +1,13 @@
+{
+  "type": "module",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "mongoose": "8.3.0",
+    "node-fetch": "^3.3.2",
+    "spotify-web-api-node": "^5.0.2"
+  }
+}
