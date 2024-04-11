@@ -28,9 +28,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - name: Install dependencies
-        run: node index.js
+        run: npm i
       - name: Run the app for 50 seconds
         run: |
-          npm start &
+          node index.js &
           sleep 50
           kill $!
