@@ -175,7 +175,7 @@ async function startServer() {
         spotifyApi.setAccessToken(token);
 
         const status = await spotifyApi.getMyCurrentPlayingTrack();
-
+        
         const artists = (status.body?.item?.artists || []).map((artist) => {
           return {
             name: artist.name,
