@@ -145,3 +145,11 @@
 .credit a:hover {
   text-decoration: none;
 }
+.space-y-0 {
+  position: absolute;
+  bottom: 35px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #ccc; /* Adjust color as needed */
+}

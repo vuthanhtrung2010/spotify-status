@@ -89,7 +89,7 @@ async function startServer() {
     app.use((req, res, next) => {
       res.setHeader(
         "Content-Security-Policy",
-        "default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://spotify.trung.is-a.dev; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://i.scdn.co; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; connect-src https://spotify.trung.is-a.dev",
+        "default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://spotify.trung.is-a.dev https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://i.scdn.co; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.tailwindcss.com; connect-src https://spotify.trung.is-a.dev",
       );
       next();
     });
@@ -193,7 +193,7 @@ async function startServer() {
             track_duration: 0,
             track_link: `https://trung.is-a.dev`,
           };
-          
+
           if (
             !status.body?.is_playing ||
             typeof status.body?.is_playing === "undefined"
