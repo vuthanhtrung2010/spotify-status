@@ -138,13 +138,21 @@ async function startServer() {
     });
 
     app.get("/callback", async (req, res) => {
-      const { code } = req.query;
+      const { code, email } = req.query;
+
+      // Email check
+      if (email !== process.env.EMAIL) {
+        return res.status(403).send("Unauthorized");
+      }
+
       try {
         const data = await spotifyApi.authorizationCodeGrant(code);
         const { access_token, refresh_token } = data.body;
+
         req.session.access_token = access_token;
         req.session.refresh_token = refresh_token;
 
+        // Set token global network
         await Token.deleteMany();
         await Token.create({
           token: access_token,
@@ -163,7 +171,7 @@ async function startServer() {
 
     app.get("/", async (req, res) => {
       try {
-        const { token, refreshToken } = await getData();
+        const { token } = await getData();
         spotifyApi.setAccessToken(token);
 
         const status = await spotifyApi.getMyCurrentPlayingTrack();
@@ -183,7 +191,7 @@ async function startServer() {
             id: status.body?.item?.id || "None",
             current_process: status.body?.item?.progress_ms || 0,
             track_duration: status.body?.item?.duration_ms || 0,
-            track_link: `https://open.spotify.com/track/${status.body.item.id}`,
+            track_link: `https://open.spotify.com/track/${status.body.item.id}` || "https://spotify.trung.is-a.dev",
           };
           if (
             !status.body?.is_playing ||
