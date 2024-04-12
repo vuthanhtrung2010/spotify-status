@@ -89,7 +89,7 @@ async function startServer() {
     app.use((req, res, next) => {
       res.setHeader(
         "Content-Security-Policy",
-        "default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://i.scdn.co; script-src 'self' 'unsafe-inline'; connect-src https://spotify.trung.is-a.dev",
+        "default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://spotify.trung.is-a.dev; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://i.scdn.co; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; connect-src https://spotify.trung.is-a.dev",
       );
       next();
     });
