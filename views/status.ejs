@@ -118,7 +118,23 @@
                     }
         
                     isCurrentlyPlaying = true;
+
+                    const components = ['track-image', 'album-name', 'artists'];
         
+                    // Function to check if all components exist
+                    const checkComponentsExistence = () => {
+                        return components.every(component => document.querySelector(`.${component}`));
+                    };
+            
+                    // Function to reload the page if any component is missing
+                    const reloadIfComponentsMissing = () => {
+                        if (!checkComponentsExistence()) {
+                            window.location.reload();
+                        }
+                    };
+
+                    // Run it fr
+                    reloadIfComponentsMissing()
                     const track = status.body.item;
                     const artists = (track.artists || []).map(artist => {
                         return {
