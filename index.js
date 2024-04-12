@@ -184,15 +184,16 @@ async function startServer() {
         });
         if (status.body.currently_playing_type === "ad") {
           const track = {
-            image: status.body?.item?.album?.images[0]?.url || "None",
-            name: status.body?.item?.name || "None",
-            artists: artists.map((artist) => artist.name).join(", ") || "None",
-            album: status.body.currently_playing_type,
-            id: status.body?.item?.id || "None",
-            current_process: status.body?.item?.progress_ms || 0,
-            track_duration: status.body?.item?.duration_ms || 0,
-            track_link: `https://open.spotify.com/track/${status.body.item.id}` || "https://spotify.trung.is-a.dev",
+            image: "None",
+            name: "None",
+            artists: "None",
+            album: "None",
+            id: "None",
+            current_process: 0,
+            track_duration: 0,
+            track_link: `https://trung.is-a.dev`,
           };
+          
           if (
             !status.body?.is_playing ||
             typeof status.body?.is_playing === "undefined"
