@@ -16,6 +16,7 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://pay
 
   * [nodejs](https://nodejs.org) version 16.6 or higher, I recommend the latest STABLE version
   * A VPS would be advised, so you don't need to keep your PC/laptop/RasPi 24/7 online!
+  * At least 200MB of RAM and 0.25vCPU
 
 </details>
 
@@ -54,6 +55,8 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://pay
      * `clientSecret` you can get from: [Spotify-Developer](https://developer.spotify.com)
      * `clientID` you can get from: [Spotify-Developer](https://developer.spotify.com)
      * `redirectURL` whatever you set for your domain/website, route `/callback`
+     * `mongoURI` get from [free mongoDB](https://www.mongodb.com/) or [Self-Host Guide](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/)
+     * `email` is email that you use to register to Spotify platform
   
 </details>
 
