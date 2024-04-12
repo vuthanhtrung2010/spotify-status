@@ -1,15 +1,12 @@
-import express from "express";
-import bodyParser from "body-parser";
-import session from "express-session";
-import fetch from "node-fetch";
-import SpotifyWebApi from "spotify-web-api-node";
-import path from "path";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+const express = require("express");
+const bodyParser = require("body-parser");
+const session = require("express-session");
+const axios = require("axios");
+const SpotifyWebApi = require("spotify-web-api-node");
+const path = require("path");
+const mongoose = require("mongoose");
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
-
-dotenv.config();
+require("@dotenvx/dotenvx").config()
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -33,21 +30,22 @@ const refreshAccessToken = async (refreshToken) => {
   const clientSecret = process.env.client_secret;
 
   const url = "https://accounts.spotify.com/api/token";
-  const payload = {
-    method: "POST",
+  const payload = new URLSearchParams({
+    grant_type: "refresh_token",
+    refresh_token: refreshToken,
+  });
+  const headers = {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString("base64")}`,
+      Authorization: `Basic ${Buffer.from(
+        `${clientId}:${clientSecret}`
+      ).toString("base64")}`,
     },
-    body: new URLSearchParams({
-      grant_type: "refresh_token",
-      refresh_token: refreshToken,
-    }),
   };
 
   try {
-    const response = await fetch(url, payload);
-    const data = await response.json();
+    const response = await axios.post(url, payload, headers); // Use Axios instead of fetch
+    const data = response.data;
     const newAccessToken = data.access_token;
 
     await Token.updateOne({}, { token: newAccessToken });
