@@ -1,30 +1,33 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const session = require("express-session");
-const axios = require("axios");
-const SpotifyWebApi = require("spotify-web-api-node");
-const path = require("path");
-const mongoose = require("mongoose");
-const { PrismaClient } = require("@prisma/client");
+import express, { Request, Response, NextFunction } from "express";
+import bodyParser from "body-parser";
+import session from "express-session";
+import axios from "axios";
+import SpotifyWebApi from "spotify-web-api-node";
+import path from "path";
+import mongoose from "mongoose";
+import { PrismaClient } from "@prisma/client";
 
 require("@dotenvx/dotenvx").config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT: number = Number(process.env.PORT) || 3000;
 const prisma = new PrismaClient();
 
-async function getData() {
+interface TokenData {
+  token: string | null;
+  refreshToken: string | null;
+}
+
+async function getData(): Promise<TokenData> {
   const allTokenData = await prisma.User.findUnique({
     where: {
-      email: process.env.email,
+      email: process.env.email as string,
     },
   });
   if (!allTokenData) {
-    let token = null;
-    let refreshAccessToken = null;
     return {
-      token,
-      refreshAccessToken,
+      token: null,
+      refreshToken: null,
     };
   }
   const token = allTokenData.token;
@@ -32,10 +35,10 @@ async function getData() {
   return { token, refreshToken };
 }
 
-const refreshAccessToken = async (refreshToken) => {
-  const clientId = process.env.client_id;
-  const clientSecret = process.env.client_secret;
-  if (!refreshAccessToken) {
+const refreshAccessToken = async (refreshToken: string | null) => {
+  const clientId = process.env.client_id as string;
+  const clientSecret = process.env.client_secret as string;
+  if (!refreshToken) {
     console.log("skipping refresh token. Please login");
     return;
   }
@@ -54,13 +57,13 @@ const refreshAccessToken = async (refreshToken) => {
   };
 
   try {
-    const response = await axios.post(url, payload, headers); // Use Axios instead of fetch
+    const response = await axios.post(url, payload, headers);
     const data = response.data;
     const newAccessToken = data.access_token;
 
     await prisma.User.update({
       where: {
-        email: process.env.email,
+        email: process.env.email as string,
       },
       data: {
         token: newAccessToken,
@@ -82,11 +85,10 @@ async function ensureData() {
   } catch (error) {
     console.error("Error ensuring data:", error);
   }
-}
-
+      }
 async function startServer() {
   try {
-    app.use((req, res, next) => {
+    app.use((req: Request, res: Response, next: NextFunction) => {
       res.locals.spotifyApi = spotifyApi;
       next();
     });
@@ -101,7 +103,7 @@ async function startServer() {
       })
     );
 
-    app.use((req, res, next) => {
+    app.use((req: Request, res: Response, next: NextFunction) => {
       res.setHeader(
         "Content-Security-Policy",
         "default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://spotify.trung.is-a.dev https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://i.scdn.co; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.tailwindcss.com; connect-src https://spotify.trung.is-a.dev"
@@ -113,15 +115,13 @@ async function startServer() {
     app.set("views", path.join(__dirname, "views"));
     app.use(express.static(path.join(__dirname, "public")));
 
-    app.get("/status-data", async (req, res) => {
+    app.get("/status-data", async (req: Request, res: Response) => {
       try {
         const { token } = await getData();
         spotifyApi.setAccessToken(token);
 
         const status = await spotifyApi.getMyCurrentPlayingTrack();
 
-        // Process the status data and send it to the client
-        // You may need to format the data according to your requirements
         res.json({ status });
       } catch (error) {
         console.error("Error retrieving status data:", error);
@@ -131,7 +131,7 @@ async function startServer() {
       }
     });
 
-    app.get("/dashboard", async (req, res) => {
+    app.get("/dashboard", async (req: Request, res: Response) => {
       try {
         const allScopes = [
           "user-read-private",
@@ -152,32 +152,30 @@ async function startServer() {
       }
     });
 
-    app.get("/callback", async (req, res) => {
+    app.get("/callback", async (req: Request, res: Response) => {
       const { code, email } = req.query;
 
-      // Email check
       if (email !== process.env.EMAIL) {
         return res.status(403).send("Unauthorized");
       }
 
       try {
-        const data = await spotifyApi.authorizationCodeGrant(code);
+        const data = await spotifyApi.authorizationCodeGrant(code as string);
         const { access_token, refresh_token } = data.body;
 
         req.session.access_token = access_token;
         req.session.refresh_token = refresh_token;
 
-        // Set token global network
         let user_data = await prisma.User.findUnique({
           where: {
-            email: process.env.email,
+            email: process.env.email as string,
           },
         });
 
         if (!user_data) {
           await prisma.User.create({
             data: {
-              email: process.env.email,
+              email: process.env.email as string,
               token: access_token,
               refreshToken: refresh_token,
             },
@@ -185,7 +183,7 @@ async function startServer() {
         } else {
           await prisma.User.update({
             where: {
-              email: process.env.email,
+              email: process.env.email as string,
             },
             data: {
               token: access_token,
@@ -204,14 +202,14 @@ async function startServer() {
       }
     });
 
-    app.get("/", async (req, res) => {
+    app.get("/", async (req: Request, res: Response) => {
       try {
         const { token } = await getData();
         spotifyApi.setAccessToken(token);
 
         const status = await spotifyApi.getMyCurrentPlayingTrack();
 
-        const artists = (status.body?.item?.artists || []).map((artist) => {
+        const artists = (status.body?.item?.artists || []).map((artist: any) => {
           return {
             name: artist.name,
             link: `https://open.spotify.com/artist/${artist.id}`,
@@ -258,7 +256,7 @@ async function startServer() {
         const track = {
           image: status.body.item.album.images[0]?.url || "None",
           name: status.body.item.name || "None",
-          artists: (status.body?.item?.artists || []).map((artist) => ({
+          artists: (status.body?.item?.artists || []).map((artist: any) => ({
             name: artist.name,
             link: `https://open.spotify.com/artist/${artist.id}`,
           })),
@@ -298,9 +296,9 @@ async function startServer() {
 }
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.client_id,
-  clientSecret: process.env.client_secret,
-  redirectUri: process.env.redirect_uri,
+  clientId: process.env.client_id as string,
+  clientSecret: process.env.client_secret as string,
+  redirectUri: process.env.redirect_uri as string,
 });
 
 (async () => {
