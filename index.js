@@ -5,21 +5,28 @@ const axios = require("axios");
 const SpotifyWebApi = require("spotify-web-api-node");
 const path = require("path");
 const mongoose = require("mongoose");
+const { PrismaClient } = require("@prisma/client");
 
-require("@dotenvx/dotenvx").config()
+require("@dotenvx/dotenvx").config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-mongoose.connect(process.env.mongoURI, {});
-
-const Token = mongoose.model("token", {
-  token: String,
-  refreshToken: String,
-});
+const prisma = new PrismaClient();
 
 async function getData() {
-  const allTokenData = await Token.findOne();
+  const allTokenData = await prisma.User.findUnique({
+    where: {
+      email: process.env.email,
+    },
+  });
+  if (!allTokenData) {
+    let token = null;
+    let refreshAccessToken = null;
+    return {
+      token,
+      refreshAccessToken,
+    };
+  }
   const token = allTokenData.token;
   const refreshToken = allTokenData.refreshToken;
   return { token, refreshToken };
@@ -28,7 +35,10 @@ async function getData() {
 const refreshAccessToken = async (refreshToken) => {
   const clientId = process.env.client_id;
   const clientSecret = process.env.client_secret;
-
+  if (!refreshAccessToken) {
+    console.log("skipping refresh token. Please login");
+    return;
+  }
   const url = "https://accounts.spotify.com/api/token";
   const payload = new URLSearchParams({
     grant_type: "refresh_token",
@@ -48,7 +58,14 @@ const refreshAccessToken = async (refreshToken) => {
     const data = response.data;
     const newAccessToken = data.access_token;
 
-    await Token.updateOne({}, { token: newAccessToken });
+    await prisma.User.update({
+      where: {
+        email: process.env.email,
+      },
+      data: {
+        token: newAccessToken,
+      },
+    });
 
     spotifyApi.setAccessToken(newAccessToken);
 
@@ -81,13 +98,13 @@ async function startServer() {
         secret: "86e3c8f0ae954893967ce6a7d2403e6d",
         resave: true,
         saveUninitialized: true,
-      }),
+      })
     );
 
     app.use((req, res, next) => {
       res.setHeader(
         "Content-Security-Policy",
-        "default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://spotify.trung.is-a.dev https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://i.scdn.co; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.tailwindcss.com; connect-src https://spotify.trung.is-a.dev",
+        "default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://spotify.trung.is-a.dev https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://i.scdn.co; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.tailwindcss.com; connect-src https://spotify.trung.is-a.dev"
       );
       next();
     });
@@ -151,11 +168,31 @@ async function startServer() {
         req.session.refresh_token = refresh_token;
 
         // Set token global network
-        await Token.deleteMany();
-        await Token.create({
-          token: access_token,
-          refreshToken: refresh_token,
+        let user_data = await prisma.User.findUnique({
+          where: {
+            email: process.env.email,
+          },
         });
+
+        if (!user_data) {
+          await prisma.User.create({
+            data: {
+              email: process.env.email,
+              token: access_token,
+              refreshToken: refresh_token,
+            },
+          });
+        } else {
+          await prisma.User.update({
+            where: {
+              email: process.env.email,
+            },
+            data: {
+              token: access_token,
+              refreshToken: refresh_token,
+            },
+          });
+        }
 
         spotifyApi.setAccessToken(access_token);
         spotifyApi.setRefreshToken(refresh_token);
@@ -173,7 +210,7 @@ async function startServer() {
         spotifyApi.setAccessToken(token);
 
         const status = await spotifyApi.getMyCurrentPlayingTrack();
-        
+
         const artists = (status.body?.item?.artists || []).map((artist) => {
           return {
             name: artist.name,
@@ -245,15 +282,14 @@ async function startServer() {
       }
     });
     const { token, refreshToken } = await getData();
-
-    refreshAccessToken(refreshToken);
-
-    setInterval(
-      () => {
-        refreshAccessToken(refreshToken);
-      },
-      30 * 60 * 1000,
-    );
+    if (!refreshAccessToken || refreshAccessToken === null) {
+      console.log("not refreshing token. please login on route /dashboard");
+    } else {
+      refreshAccessToken(refreshToken);
+    }
+    setInterval(() => {
+      refreshAccessToken(refreshToken);
+    }, 30 * 60 * 1000);
 
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   } catch (error) {
