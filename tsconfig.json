@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "esModuleInterop": true,
+    "lib": ["ES6"],
+    "module": "CommonJS",
+    "noImplicitAny": true,
+    "outDir": "dist",
+    "rootDir": "./",
+    "skipLibCheck": true,
+    "strict": false
+  }
+}
