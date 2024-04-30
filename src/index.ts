@@ -111,8 +111,8 @@ async function startServer() {
     });
 
     app.set("view engine", "ejs");
-    app.set("views", path.join(__dirname, "views"));
-    app.use(express.static(path.join(__dirname, "public")));
+    app.set("views", "views");
+    app.use(express.static("public"));
 
     app.get("/status-data", async (req: Request, res: Response) => {
       try {

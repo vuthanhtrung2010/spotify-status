@@ -4,10 +4,11 @@
     "esModuleInterop": true,
     "lib": ["ES6"],
     "module": "CommonJS",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "outDir": "dist",
-    "rootDir": "./",
+    "rootDir": "src",
     "skipLibCheck": true,
     "strict": false
-  }
+  },
+  "include": ["src"]
 }

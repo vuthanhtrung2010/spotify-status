@@ -8,7 +8,8 @@
     "ejs": "^3.1.9",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
-    "spotify-web-api-node": "^5.0.2"
+    "spotify-web-api-node": "^5.0.2",
+    "typescript": "^5.4.5"
   },
   "devDependencies": {
     "npm-run-all2": "^5.0.0",
@@ -16,7 +17,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "build": "npm-run-all build:prisma build:schema",
+    "build": "npm-run-all build:compile build:prisma build:schema",
+    "build:compile": "tsc",
     "build:prisma": "prisma generate",
     "build:schema": "prisma migrate dev --name init"
   }
