@@ -11,7 +11,7 @@ require("@dotenvx/dotenvx").config();
 const app = express();
 const PORT: number = Number(process.env.PORT) || 3000;
 const prisma = new PrismaClient();
-const prisma_user_data = prisma.User
+const prisma_user_data = prisma.user
 interface TokenData {
   token: string | null;
   refreshToken: string | null;
