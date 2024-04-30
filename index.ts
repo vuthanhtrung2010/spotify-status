@@ -4,7 +4,6 @@ import session from "express-session";
 import axios from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
 import path from "path";
-import mongoose from "mongoose";
 import { PrismaClient } from "@prisma/client";
 
 require("@dotenvx/dotenvx").config();
