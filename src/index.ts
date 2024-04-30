@@ -58,14 +58,14 @@ const refreshAccessToken = async (refreshToken: string | null) => {
   try {
     const response = await axios.post(url, payload, headers);
     const data = response.data;
-    const newAccessToken = data.access_token;
+    const newAccessToken: string = data.access_token;
 
     await prisma.User.update({
       where: {
         email: process.env.email as string,
       },
       data: {
-        token: newAccessToken,
+        token: newAccessToken as string,
       },
     });
 

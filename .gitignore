@@ -1,3 +1,7 @@
 .env
 node_modules
 dist
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
