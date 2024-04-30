@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "build": "npm-run-all build:compile build:prisma build:schema",
+    "build": "npm-run-all build:prisma build:schema build:compile",
     "build:compile": "tsc",
     "build:prisma": "prisma generate",
     "build:schema": "prisma migrate dev --name init"
