@@ -4,7 +4,6 @@ const session = require("express-session");
 const axios = require("axios");
 const SpotifyWebApi = require("spotify-web-api-node");
 const path = require("path");
-const mongoose = require("mongoose");
 const { PrismaClient } = require("@prisma/client");
 
 require("@dotenvx/dotenvx").config();
