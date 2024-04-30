@@ -11,7 +11,7 @@
     "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
-    "npm-run-all2": "^5.0.0",
+    "npm-run-all2": "^6.0.0",
     "prisma": "^5.13.0"
   },
   "scripts": {
