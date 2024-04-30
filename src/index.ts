@@ -96,9 +96,9 @@ async function startServer() {
     app.use(bodyParser.json());
     app.use(
       session({
-        secret: "86e3c8f0ae954893967ce6a7d2403e6d",
-        resave: true,
-        saveUninitialized: true,
+        secret: "86e3c8f0ae954893967ce6a7d2403e6d" as string,
+        resave: true as boolean,
+        saveUninitialized: true as boolean,
       })
     );
 
@@ -253,19 +253,19 @@ async function startServer() {
         }
 
         const track = {
-          image: status.body.item.album.images[0]?.url || "None",
-          name: status.body.item.name || "None",
+          image: status.body.item.album.images[0]?.url as string || "None" as string,
+          name: status.body.item.name as string || "None" as string,
           artists: (status.body?.item?.artists || []).map((artist: any) => ({
-            name: artist.name,
-            link: `https://open.spotify.com/artist/${artist.id}`,
+            name: artist.name as string,
+            link: `https://open.spotify.com/artist/${artist.id}` as string,
           })),
           album: {
-            name: status.body.item.album.name || "None",
+            name: status.body.item.album.name as string || "None" as string,
             link: `https://open.spotify.com/album/${status.body.item.album.id}`,
           },
-          id: status.body.item.id || "None",
-          current_progress: status.body.progress_ms,
-          track_duration: status.body.item.duration_ms || 0,
+          id: status.body.item.id as string || "None" as string,
+          current_progress: status.body.progress_ms as number,
+          track_duration: status.body.item.duration_ms as number || 0 as number,
         };
 
         res.render("status", { data: { isPlaying: true, track } });
