@@ -11,14 +11,14 @@ require("@dotenvx/dotenvx").config();
 const app = express();
 const PORT: number = Number(process.env.PORT) || 3000;
 const prisma = new PrismaClient();
-
+const prisma_user_data = prisma.User
 interface TokenData {
   token: string | null;
   refreshToken: string | null;
 }
 
 async function getData(): Promise<TokenData> {
-  const allTokenData = await prisma.User.findUnique({
+  const allTokenData = await prisma_user_data.findUnique({
     where: {
       email: process.env.email as string,
     },
@@ -60,7 +60,7 @@ const refreshAccessToken = async (refreshToken: string | null) => {
     const data = response.data;
     const newAccessToken: string = data.access_token;
 
-    await prisma.User.update({
+    await prisma_user_data.update({
       where: {
         email: process.env.email as string,
       },
@@ -165,14 +165,14 @@ async function startServer() {
         req.session.access_token = access_token;
         req.session.refresh_token = refresh_token;
 
-        let user_data = await prisma.User.findUnique({
+        let user_data = await prisma_user_data.findUnique({
           where: {
             email: process.env.email as string,
           },
         });
 
         if (!user_data) {
-          await prisma.User.create({
+          await prisma_user_data.create({
             data: {
               email: process.env.email as string,
               token: access_token,
@@ -180,7 +180,7 @@ async function startServer() {
             },
           });
         } else {
-          await prisma.User.update({
+          await prisma_user_data.update({
             where: {
               email: process.env.email as string,
             },
