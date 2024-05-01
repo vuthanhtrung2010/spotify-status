@@ -304,3 +304,5 @@ const spotifyApi = new SpotifyWebApi({
   await ensureData();
   await startServer();
 })();
+
+module.exports = app
