@@ -11,7 +11,7 @@ require("@dotenvx/dotenvx").config();
 const app = express();
 const PORT: number = Number(process.env.PORT) || 3000;
 const prisma = new PrismaClient();
-const prisma_user_data = prisma.user
+const prisma_user_data = prisma.user;
 interface TokenData {
   token: string | null;
   refreshToken: string | null;
@@ -50,7 +50,7 @@ const refreshAccessToken = async (refreshToken: string | null) => {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: `Basic ${Buffer.from(
-        `${clientId}:${clientSecret}`
+        `${clientId}:${clientSecret}`,
       ).toString("base64")}`,
     },
   };
@@ -84,7 +84,7 @@ async function ensureData() {
   } catch (error) {
     console.error("Error ensuring data:", error);
   }
-      }
+}
 async function startServer() {
   try {
     app.use((req: Request, res: Response, next: NextFunction) => {
@@ -99,13 +99,13 @@ async function startServer() {
         secret: "86e3c8f0ae954893967ce6a7d2403e6d" as string,
         resave: true as boolean,
         saveUninitialized: true as boolean,
-      })
+      }),
     );
 
     app.use((req: Request, res: Response, next: NextFunction) => {
       res.setHeader(
         "Content-Security-Policy",
-        "default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://spotify.trung.is-a.dev https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://i.scdn.co; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.tailwindcss.com; connect-src https://spotify.trung.is-a.dev"
+        "default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://spotify.trung.is-a.dev https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://i.scdn.co; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.tailwindcss.com; connect-src https://spotify.trung.is-a.dev",
       );
       next();
     });
@@ -208,12 +208,14 @@ async function startServer() {
 
         const status = await spotifyApi.getMyCurrentPlayingTrack();
 
-        const artists = (status.body?.item?.artists || []).map((artist: any) => {
-          return {
-            name: artist.name,
-            link: `https://open.spotify.com/artist/${artist.id}`,
-          };
-        });
+        const artists = (status.body?.item?.artists || []).map(
+          (artist: any) => {
+            return {
+              name: artist.name,
+              link: `https://open.spotify.com/artist/${artist.id}`,
+            };
+          },
+        );
         if (status.body.currently_playing_type === "ad") {
           const track = {
             image: "None",
@@ -253,19 +255,22 @@ async function startServer() {
         }
 
         const track = {
-          image: status.body.item.album.images[0]?.url as string || "None" as string,
-          name: status.body.item.name as string || "None" as string,
+          image:
+            (status.body.item.album.images[0]?.url as string) ||
+            ("None" as string),
+          name: (status.body.item.name as string) || ("None" as string),
           artists: (status.body?.item?.artists || []).map((artist: any) => ({
             name: artist.name as string,
             link: `https://open.spotify.com/artist/${artist.id}` as string,
           })),
           album: {
-            name: status.body.item.album.name as string || "None" as string,
+            name: (status.body.item.album.name as string) || ("None" as string),
             link: `https://open.spotify.com/album/${status.body.item.album.id}`,
           },
-          id: status.body.item.id as string || "None" as string,
+          id: (status.body.item.id as string) || ("None" as string),
           current_progress: status.body.progress_ms as number,
-          track_duration: status.body.item.duration_ms as number || 0 as number,
+          track_duration:
+            (status.body.item.duration_ms as number) || (0 as number),
         };
 
         res.render("status", { data: { isPlaying: true, track } });
@@ -284,9 +289,12 @@ async function startServer() {
     } else {
       refreshAccessToken(refreshToken);
     }
-    setInterval(() => {
-      refreshAccessToken(refreshToken);
-    }, 30 * 60 * 1000);
+    setInterval(
+      () => {
+        refreshAccessToken(refreshToken);
+      },
+      30 * 60 * 1000,
+    );
 
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   } catch (error) {
@@ -305,4 +313,4 @@ const spotifyApi = new SpotifyWebApi({
   await startServer();
 })();
 
-module.exports = app
+module.exports = app;
