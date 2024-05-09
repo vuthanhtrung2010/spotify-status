@@ -8,8 +8,8 @@ import { PrismaClient } from "@prisma/client";
 import RateLimit from 'express-rate-limit';
 
 var limiter = RateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // max 100 requests per windowMs
+  windowMs: 15 * 60 * 1000 as number, // 15 minutes
+  max: 100 as number, // max 100 requests per windowMs
 });
 
 require("@dotenvx/dotenvx").config();
@@ -18,6 +18,7 @@ const app = express();
 const PORT: number = Number(process.env.PORT) || 3000;
 const prisma = new PrismaClient();
 const prisma_user_data = prisma.user;
+
 interface TokenData {
   token: string | null;
   refreshToken: string | null;
@@ -41,13 +42,13 @@ async function getData(): Promise<TokenData> {
 }
 
 const refreshAccessToken = async (refreshToken: string | null) => {
-  const clientId = process.env.client_id as string;
-  const clientSecret = process.env.client_secret as string;
+  const clientId: string = process.env.client_id;
+  const clientSecret: string = process.env.client_secret;
   if (!refreshToken) {
     console.log("skipping refresh token. Please login");
     return;
   }
-  const url = "https://accounts.spotify.com/api/token";
+  const url: string = "https://accounts.spotify.com/api/token";
   const payload = new URLSearchParams({
     grant_type: "refresh_token",
     refresh_token: refreshToken,
