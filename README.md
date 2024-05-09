@@ -52,11 +52,12 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://pay
 **NOTE:** _You can do the exact same configuration inside of the `example.env` file, just make sure to rename it to `.env` or use environment variables!_
 
 1. `./.env`
-   - `clientSecret` you can get from: [Spotify-Developer](https://developer.spotify.com)
-   - `clientID` you can get from: [Spotify-Developer](https://developer.spotify.com)
-   - `redirectURL` whatever you set for your domain/website, route `/callback`
-   - `mongoURI` get from [free mongoDB](https://www.mongodb.com/) or [Self-Host Guide](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/)
-   - `email` is email that you use to register to Spotify platform
+   - `client_secret` you can get from: [Spotify-Developer](https://developer.spotify.com)
+   - `client_id` you can get from: [Spotify-Developer](https://developer.spotify.com)
+   - `redirect_uri` whatever you set for your domain/website, route `/callback`.
+   - `DATABASE_URL` get from your self host postgres14 or postgres16
+   - `secret` you can generate from a password generator or just simply slam your keyboard for a secret.
+   - `email` is email that you use to register to Spotify platform.
 
 </details>
 
