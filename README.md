@@ -40,7 +40,7 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://pay
 
 1.  Ensure that you have installed all node modules by running `npm i`
 2.  Ensure that you have renamed `example.env` to `.env` and added environment variables
-3.  Now run `node index.js` or `pm2 start index.js --name Spotify Status` if you using a VPS. Might add `npx` to the prefix of `pm2`!
+3.  Now run `npm run build` then run `node dist/index.js` or `npm start` or `pm2 start dist/index.js --name Spotify Status` if you using a VPS. Might add `npx` to the prefix of `pm2`!
 
 </details>
 
