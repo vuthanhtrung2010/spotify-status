@@ -1,13 +1,26 @@
 {
-  "type": "module",
   "dependencies": {
+    "@dotenvx/dotenvx": "^0.37.0",
+    "@prisma/client": "^5.13.0",
+    "axios": "^1.6.8",
     "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
+    "express-rate-limit": "^7.2.0",
     "express-session": "^1.18.0",
-    "mongoose": "8.3.0",
-    "node-fetch": "^3.3.2",
-    "spotify-web-api-node": "^5.0.2"
+    "spotify-web-api-node": "^5.0.2",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "npm-run-all2": "^6.0.0",
+    "prisma": "^5.13.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "build": "npm-run-all build:prisma build:schema build:compile",
+    "build:compile": "tsc",
+    "build:prisma": "prisma generate",
+    "build:schema": "prisma migrate dev --name init"
   }
 }

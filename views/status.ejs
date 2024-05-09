@@ -2,57 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- HTML Meta Tags -->
-        <title>Trung's Spotify Status</title>
-        <meta name="description" content="A website which displays my spotify status.">
-        <meta name="theme-color" content="#0096ff">
+    <!-- HTML Meta Tags -->
+    <title>Trung's Spotify Status</title>
+    <meta name="description" content="A website which displays my spotify status.">
+    <meta name="theme-color" content="#0096ff">
 
-        <!-- Google / Search Engine Tags -->
-        <meta itemprop="name" content="Trung">
-        <meta itemprop="description" content="A website which displays my spotify status.">
-        <meta itemprop="image" content="https://spotify.is-a.dev/assets/meta/banner.png">
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content="Trung">
+    <meta itemprop="description" content="A website which displays my spotify status.">
+    <meta itemprop="image" content="https://spotify.is-a.dev/assets/meta/banner.png">
 
-        <!-- Facebook Meta Tags -->
-        <meta property="og:url" content="https://spotify.trung.is-a.dev">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="Trung">
-        <meta property="og:description" content="A website which displays my spotify status.">
-        <meta property="og:image" content="https://spotify.trung.is-a.dev/assets/meta/banner.png">
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://spotify.trung.is-a.dev">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Trung">
+    <meta property="og:description" content="A website which displays my spotify status.">
+    <meta property="og:image" content="https://spotify.trung.is-a.dev/assets/meta/banner.png">
 
-        <!-- Twitter Meta Tags -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Trung">
-        <meta name="twitter:description" content="A website which displays my spotify status.">
-        <meta name="twitter:image" content="https://spotify.trung.is-a.dev/assets/meta/banner.png">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Trung">
+    <meta name="twitter:description" content="A website which displays my spotify status.">
+    <meta name="twitter:image" content="https://spotify.trung.is-a.dev/assets/meta/banner.png">
 
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="/assets/favicon.ico">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/favicon.ico">
 
-        <!-- Stylesheets -->
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        <link rel="stylesheet" href="/css/index.css">
-
-        <!-- Scripts -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    </head>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4R5HG5TRDH"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-4R5HG5TRDH');
-    </script>
+    <!-- Stylesheets -->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> -->
 
     <link rel="stylesheet" href="/styles.css">
 </head>
@@ -66,6 +48,10 @@
         </div>
 
         <div class="credit">Made by <a href="https://discord.gg/TR8k3MtjNZ" target="_blank">Vũ Thành Trung</a> | <a href="https://github.com/vuthanhtrung2010/spotify-status" target="_blank">Github</a></div>
+
+        <div class="space-y-0">
+            <p class="mt-8 text-base leading-8 text-center text-gray-400">&copy; 2024 Trung - All Rights Reserved.</p>
+        </div>
 
         <div class="status">
             <% if (data.isPlaying && !data.isPausing) { %>
@@ -96,112 +82,4 @@
             <% } %>
         </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-    const progressBarFill = document.querySelector('.progress-bar-fill');
-
-    // Function to fetch status data from the server
-    const fetchStatusData = async () => {
-        try {
-            const response = await fetch('/status-data');
-            const data = await response.json();
-
-            // Process the received data and update the UI
-            updateUI(data);
-        } catch (error) {
-            console.error('Error fetching status data:', error);
-        }
-    };
-
-    // Function to update the UI with the received status data
-    const updateUI = (data) => {
-        const status = data.status;
-        if (!status || !status.body || !status.body.is_playing) {
-            // If not playing or no status data available, update UI accordingly (e.g., display "Not playing")
-            return;
-        }
-
-        const track = status.body.item;
-        const artists = (track.artists || []).map(artist => {
-            return {
-                name: artist.name,
-                link: `https://open.spotify.com/artist/${artist.id}`
-            };
-        });
-
-        // Update track image
-        const trackImage = document.querySelector('.track-image');
-        if (trackImage) {
-            trackImage.src = track.album.images[0].url;
-        }
-
-        // Update track name
-        const trackName = document.querySelector('h2');
-        if (trackName) {
-            const trackLink = document.createElement('a');
-            trackLink.href = track.external_urls.spotify;
-            trackLink.textContent = track.name;
-            trackLink.style.color = 'white'; // Set text color to white
-            trackLink.style.textDecoration = 'none'; // Remove underline by default
-            trackLink.style.transition = 'color 0.3s, text-decoration 0.3s'; // Add transition effect for color and text-decoration
-            trackLink.addEventListener('mouseover', () => {
-                trackLink.style.textDecoration = 'underline'; // Underline on hover
-            });
-            trackLink.addEventListener('mouseout', () => {
-                trackLink.style.textDecoration = 'none'; // Remove underline on mouseout
-            });
-            trackName.innerHTML = ''; // Clear existing content
-            trackName.appendChild(trackLink); // Append the anchor tag to the h2 element
-        }
-
-        // Update album name
-        const album = track.album;
-        const albumLink = album ? `https://open.spotify.com/album/${album.id}` : '#';
-
-        const albumName = document.querySelector('.album-name');
-        if (albumName) {
-            albumName.innerHTML = `on <a href="${albumLink}">${track.album.name}</a>`;
-        }
-
-        // Update artists names
-        const artistsList = document.querySelector('.artists');
-        if (artistsList) {
-            artistsList.innerHTML = artists.map(artist => `<a href="${artist.link}">${artist.name}</a>`).join(', ');
-        }
-
-        const currentProgress = status.body.progress_ms || 0;
-        const trackDuration = track.duration_ms || 1; // Prevent division by zero
-
-        const progressPercent = (currentProgress / trackDuration) * 100;
-
-        // Update the progress bar width
-        if (progressBarFill) {
-            progressBarFill.style.width = `${progressPercent}%`;
-        }
-
-        // Update other UI elements as needed
-        const endTime = document.getElementById('end-time');
-        if (endTime) {
-            const remainingTime = calculateRemainingTime(currentProgress, trackDuration);
-            endTime.innerText = remainingTime;
-        }
-    };
-
-    // Function to calculate remaining time
-    const calculateRemainingTime = (currentProgress, trackDuration) => {
-        const minutes = Math.floor(trackDuration / 60000);
-        const seconds = Math.floor((trackDuration % 60000) / 1000);
-        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    };
-
-    // Fetch status data initially when the page loads
-    fetchStatusData();
-
-    // Periodically fetch status data every second
-    setInterval(fetchStatusData, 1000);
-});
-
-        </script>        
-    </div>
-</body>
-</html>
+        <script src="/js/status/index.js"></script>
