@@ -8,7 +8,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "skipLibCheck": true,
-    "strict": false
+    "strict": true
   },
   "include": ["src"]
 }

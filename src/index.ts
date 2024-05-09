@@ -42,8 +42,8 @@ async function getData(): Promise<TokenData> {
 }
 
 const refreshAccessToken = async (refreshToken: string | null) => {
-  const clientId: string = process.env.client_id;
-  const clientSecret: string = process.env.client_secret;
+  const clientId: string = process.env.client_id || "";
+  const clientSecret: string = process.env.client_secret || "";
   if (!refreshToken) {
     console.log("skipping refresh token. Please login");
     return;
@@ -284,9 +284,11 @@ async function startServer() {
         res.render("status", { data: { isPlaying: true, track } });
       } catch (err) {
         console.log(err);
-        if (err.message.includes("The access token expired")) {
-          res.redirect("/dashboard");
-          return;
+        if (typeof err === 'object' && typeof err !== null && typeof (err as Error).message === 'string') {
+          if ((err as Error).message.includes("The access token expired")) {
+            res.redirect("/dashboard");
+            return;
+          }
         }
         res.status(500).send("Error occurred");
       }
