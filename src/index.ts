@@ -5,6 +5,12 @@ import axios from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
 import path from "path";
 import { PrismaClient } from "@prisma/client";
+import RateLimit from express-rate-limit';
+
+var limiter = RateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // max 100 requests per windowMs
+});
 
 require("@dotenvx/dotenvx").config();
 
@@ -92,6 +98,7 @@ async function startServer() {
       next();
     });
 
+    app.use(limiter)
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
     app.use(
