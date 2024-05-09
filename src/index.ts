@@ -96,7 +96,7 @@ async function startServer() {
     app.use(bodyParser.json());
     app.use(
       session({
-        secret: "86e3c8f0ae954893967ce6a7d2403e6d" as string,
+        secret: process.env.secret as string,
         resave: true as boolean,
         saveUninitialized: true as boolean,
       }),
