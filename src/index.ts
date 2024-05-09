@@ -5,7 +5,7 @@ import axios from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
 import path from "path";
 import { PrismaClient } from "@prisma/client";
-import RateLimit from express-rate-limit';
+import RateLimit from 'express-rate-limit';
 
 var limiter = RateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
