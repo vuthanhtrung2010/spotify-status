@@ -14,9 +14,9 @@ var limiter = RateLimit({
 
 require("@dotenvx/dotenvx").config();
 
-const app = express();
+const app: express = express();
 const PORT: number = Number(process.env.PORT) || 3000;
-const prisma = new PrismaClient();
+const prisma: PrismaClient = new PrismaClient();
 const prisma_user_data = prisma.user;
 
 interface TokenData {
@@ -36,8 +36,8 @@ async function getData(): Promise<TokenData> {
       refreshToken: null,
     };
   }
-  const token = allTokenData.token;
-  const refreshToken = allTokenData.refreshToken;
+  const token: string = allTokenData.token;
+  const refreshToken: string = allTokenData.refreshToken;
   return { token, refreshToken };
 }
 
@@ -51,7 +51,7 @@ const refreshAccessToken = async (refreshToken: string | null) => {
   const url: string = "https://accounts.spotify.com/api/token";
   const payload = new URLSearchParams({
     grant_type: "refresh_token",
-    refresh_token: refreshToken,
+    refresh_token: refreshToken as string,
   });
   const headers = {
     headers: {
@@ -140,7 +140,7 @@ async function startServer() {
 
     app.get("/dashboard", async (req: Request, res: Response) => {
       try {
-        const allScopes = [
+        const allScopes: String[] = [
           "user-read-private",
           "user-read-email",
           "user-library-read",
@@ -151,7 +151,7 @@ async function startServer() {
           "user-read-playback-state",
           "user-read-currently-playing",
         ];
-        const authorizeURL = spotifyApi.createAuthorizeURL(allScopes, "state");
+        const authorizeURL: string = spotifyApi.createAuthorizeURL(allScopes, "state");
         res.redirect(authorizeURL);
       } catch (error) {
         console.error("Error generating authorization URL:", error);
@@ -183,8 +183,8 @@ async function startServer() {
           await prisma_user_data.create({
             data: {
               email: process.env.email as string,
-              token: access_token,
-              refreshToken: refresh_token,
+              token: access_token as string,
+              refreshToken: refresh_token as string,
             },
           });
         } else {
@@ -193,8 +193,8 @@ async function startServer() {
               email: process.env.email as string,
             },
             data: {
-              token: access_token,
-              refreshToken: refresh_token,
+              token: access_token as string,
+              refreshToken: refresh_token as string,
             },
           });
         }
