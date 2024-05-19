@@ -7,7 +7,7 @@ export const links: LinksFunction = () => [
   {
     rel: "icon",
     href: "/favicon.ico",
-    type: "image/png",
+    type: "image/x-icon",
   },
 ];
 
