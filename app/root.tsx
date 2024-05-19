@@ -4,6 +4,11 @@ import appStylesHref from "./styles.css?url";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appStylesHref },
+  {
+    rel: "icon",
+    href: "/favicon.png",
+    type: "image/png",
+  },
 ];
 
 export const meta: MetaFunction = () => {
@@ -11,7 +16,7 @@ export const meta: MetaFunction = () => {
     { title: "Trung's Spotify Status" },
     {
       property: "og:title",
-      content: "A website which displays my spotify status.",
+      content: "Vũ Thành Trung",
     },
     {
       name: "description",
@@ -20,11 +25,6 @@ export const meta: MetaFunction = () => {
     {
       name: "viewport",
       content: "width=device-width, initial-scale=1",
-    },
-    {
-      rel: "icon",
-      href: "/favicon.ico",
-      type: "image/x-icon",
     },
     {
       property: "og:image",
