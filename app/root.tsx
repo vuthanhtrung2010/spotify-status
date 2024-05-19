@@ -21,20 +21,20 @@ export default function App() {
         {/* Google / Search Engine Tags */}
         <meta itemProp="name" content="Trung" />
         <meta itemProp="description" content="A website which displays my spotify status." />
-        <meta itemProp="image" content="https://spotify.is-a.dev/assets/meta/banner.png" />
+        <meta itemProp="image" content="https://spotify.is-a.dev/assets/banner.png" />
 
         {/* Facebook Meta Tags */}
         <meta property="og:url" content="https://spotify.trung.is-a.dev" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Trung" />
         <meta property="og:description" content="A website which displays my spotify status." />
-        <meta property="og:image" content="https://spotify.trung.is-a.dev/assets/meta/banner.png" />
+        <meta property="og:image" content="https://spotify.trung.is-a.dev/assets/banner.png" />
 
         {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Trung" />
         <meta name="twitter:description" content="A website which displays my spotify status." />
-        <meta name="twitter:image" content="https://spotify.trung.is-a.dev/assets/meta/banner.png" />
+        <meta name="twitter:image" content="https://spotify.trung.is-a.dev/assets/banner.png" />
         <Meta />
         <Links />
       </head>
