@@ -14,7 +14,7 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://ko-
 <details>
   <summary>Click to expand</summary>
 
-- [nodejs](https://nodejs.org) version 16.6 or higher, I recommend the latest STABLE version
+- [nodejs](https://nodejs.org) version 20 or higher, I recommend the latest STABLE version
 - A VPS would be advised, so you don't need to keep your PC/laptop/RasPi 24/7 online!
 - At least 50MB of RAM and 0.25vCPU
 
