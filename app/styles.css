@@ -1,21 +1,27 @@
 .container {
-  background-color: #04022b; /* Black background */
+  background-color: #04022b;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  color: #ffffff; /* White text color */
+  color: #ffffff;
 }
 
 .status {
   display: flex;
   align-items: center;
-  min-width: 600px; /* Set minimum width */
+  min-width: 600px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #0a081f; /* Set a lighter background color */
+  background-color: #0a081f;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.track-info-container {
+  display: flex;
+  align-items: center;
 }
 
 .track-image {
@@ -26,23 +32,29 @@
   margin-right: 20px;
 }
 
+.track-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .progress-bar-container {
-  flex: 1; /* Fill the available space */
-  display: flex; /* Display children elements horizontally */
-  align-items: center; /* Center-align children elements vertically */
-  justify-content: flex-start; /* Align children to the start of the container */
-  position: relative; /* Position relative for absolute positioning */
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
 }
 
 .progress-bar {
-  flex: 1; /* Fill the available space */
+  flex: 1;
   height: 8px;
-  background-color: #333; /* Dark grey background */
+  background-color: #333;
   border-radius: 4px;
-  margin-left: 10px; /* Add spacing between the progress bar and text */
-  min-width: 200px; /* Set minimum width */
-  overflow: hidden; /* Hide overflowing content */
-  position: relative; /* Ensure proper positioning of children */
+  margin-left: 10px;
+  min-width: 200px;
+  overflow: hidden;
+  position: relative;
 }
 
 .progress-bar-background {
@@ -50,9 +62,9 @@
   top: 0;
   left: 0;
   height: 100%;
-  background-color: #555; /* Slightly darker than the background */
-  width: 100%; /* Initially fills the entire progress bar */
-  z-index: 1; /* Ensure background is behind the fill */
+  background-color: #555;
+  width: 100%;
+  z-index: 1;
 }
 
 .progress-bar-fill {
@@ -60,24 +72,31 @@
   top: 0;
   left: 0;
   height: 100%;
-  background-color: #beb8b8; /* Light grey fill */
-  width: <%= (data.track.current_progress / data.track.track_duration) * 100 %>%; /* Initially no width */
-  transition: width 0.5s ease; /* Add smooth transition for width changes */
-  z-index: 2; /* Ensure fill is above the background */
+  background-color: #beb8b8;
+  width: 0%;
+  transition: width 0.5s ease;
+  z-index: 2;
 }
 
-/* Styling for artist name */
 .artist-name {
-  font-weight: bold; /* Make the text bold */
+  font-weight: bold;
   font-family: Arial, sans-serif;
   font-size: 16px;
+  margin-top: 20px;
 }
+
+.track-name {
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+}
+
 .album-name {
   font-family: Arial, sans-serif;
   font-size: 16px;
+  margin-top: 0;
 }
 
-/* Styling for time display */
 .time-display {
   display: flex;
   justify-content: space-between;
@@ -86,7 +105,7 @@
   margin-top: 5px;
   position: relative;
   width: 100%;
-  bottom: -6px; /* Adjusted bottom position */
+  bottom: -6px;
   left: 0;
 }
 
@@ -95,37 +114,37 @@
 }
 
 .artist-name a,
+.track-name a,
 .album-name a {
-  color: white; /* Set the color of links to white */
-  text-decoration: none; /* Remove underline from links */
-  transition:
-    color 0.3s,
-    text-decoration 0.3s; /* Add transition effect for color and text-decoration */
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s, text-decoration 0.3s;
 }
 
 .artist-name a:hover,
-.album-name a:hover {
-  text-decoration: underline; /* Underline links on hover */
+.album-name a:hover,
+.track-name a:hover {
+  text-decoration: underline;
 }
 
 .user-info {
   position: absolute;
   top: 20px;
-  right: 20px; /* Positioning in the top right corner */
+  right: 20px;
   display: flex;
   align-items: center;
 }
 
 .user-avatar {
-  width: 60px; /* Doubled the width */
-  height: 60px; /* Doubled the height */
-  border-radius: 50%; /* Make the avatar round */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
   margin-right: 10px;
 }
 
 .user-name {
   font-weight: bold;
-  font-size: 26px; /* Doubled the font size */
+  font-size: 26px;
   color: white;
 }
 
@@ -138,22 +157,25 @@
   font-size: 25px;
   color: white;
 }
+
 .credit a {
   color: white;
   text-decoration: underline;
 }
+
 .credit a:hover {
   text-decoration: none;
 }
+
 .space-y-0 {
   position: absolute;
-  bottom: 35px; /* Adjust as needed */
+  bottom: 35px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  color: #ccc; /* Adjust color as needed */
+  color: #ccc;
 }
-/* Scroll Bar */
+
 body::-webkit-scrollbar {
   width: 16px;
   background-color: #333333;
@@ -179,7 +201,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Float Animation */
 @keyframes float {
   0%,
   100% {
