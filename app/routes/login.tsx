@@ -1,8 +1,7 @@
-import { LoaderFunction } from "@remix-run/node";
-import { redirect } from "@remix-run/node";
+import { LoaderFunction, redirect} from "@remix-run/node";
 import { spotifyApi } from "~/data";
 
-export let loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async () => {
   const scopes = [
     "user-read-private",
     "user-read-email",

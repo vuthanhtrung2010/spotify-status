@@ -5,7 +5,7 @@
 # Important notes and thank ❤️
 
 First of all, thanks for using this Source Code, it was and is a ton of work to create and maintain it!
-That's why I'm asking everyone to [**donate a little bit of money**](https://paypal.me/trungdev) or if that's not possible, then join my [Discord Server](https://discord.gg/5q6zxM5vnT)!
+That's why I'm asking everyone to [**donate a little bit of money**](https://ko-fi.com/devtrung) (via Paypal through ko-fi) or if that's not possible, then join my [Discord Server](https://discord.gg/5q6zxM5vnT)!
 
 # Installation Guide 🔥
 
@@ -16,7 +16,7 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://pay
 
 - [nodejs](https://nodejs.org) version 16.6 or higher, I recommend the latest STABLE version
 - A VPS would be advised, so you don't need to keep your PC/laptop/RasPi 24/7 online!
-- At least 200MB of RAM and 0.25vCPU
+- At least 50MB of RAM and 0.25vCPU
 
 </details>
 
@@ -36,11 +36,13 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://pay
 <details>
   <summary>Click to expand</summary>
 
-**NOTE:** _You can do the exact same configuration inside of the `example.env` file, just make sure to rename it to `.env` or use environment variables!_
+**NOTE:** _You can do the exact same configuration inside of the `.env.example` file, just make sure to rename it to `.env` or use environment variables!_
 
 1.  Ensure that you have installed all node modules by running `npm i`
-2.  Ensure that you have renamed `example.env` to `.env` and added environment variables
-3.  Now run `npm run build` then run `node dist/index.js` or `npm start` or `pm2 start dist/index.js --name Spotify Status` if you using a VPS. Might add `npx` to the prefix of `pm2`!
+2.  Ensure that you have renamed `.env.example` to `.env` and added environment variables
+3.  Now run `npm run build` then run `npm start` or `npm start` or `pm2 start npm --name Status -- start` if you using a VPS to run the website as production mode. You can also run the website as developer mode by `npm run dev` or `pm2 start "npm run dev" --name Status`. Might add `npx` to the prefix of `pm2` if you are not using the runtime version!
+4. Now go to the `/login` route and login to your Spotify Account!
+5. Enjoy!
 
 </details>
 
@@ -49,15 +51,16 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://pay
 <details>
   <summary>Click to expand</summary>
 
-**NOTE:** _You can do the exact same configuration inside of the `example.env` file, just make sure to rename it to `.env` or use environment variables!_
+**NOTE:** _You can do the exact same configuration inside of the `.env.example` file, just make sure to rename it to `.env` or use environment variables!_
 
 1. `./.env`
-   - `client_secret` you can get from: [Spotify-Developer](https://developer.spotify.com)
-   - `client_id` you can get from: [Spotify-Developer](https://developer.spotify.com)
+   - `client_secret` you can get from: [Spotify Developer Dashboard](https://developer.spotify.com)
+   - `client_id` you can get from: [Spotify Developer Dashboard](https://developer.spotify.com)
    - `redirect_uri` whatever you set for your domain/website, route `/callback`.
-   - `DATABASE_URL` get from your self host postgres14 or postgres16
+   - `DATABASE_URL` get from your self host postgresql database (supports postgresql version 14 or version 16, not suggesting using lower version).
    - `secret` you can generate from a password generator or just simply slam your keyboard for a secret.
    - `email` is email that you use to register to Spotify platform.
+   - `PORT` is your port number the website listening to. Default if none it will be listen in http://localhost:3000/
 
 </details>
 

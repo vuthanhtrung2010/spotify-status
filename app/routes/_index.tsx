@@ -10,11 +10,11 @@ export const loader: LoaderFunction = async () => {
 };
 
 export default function Index() {
-  let trackData: CurrentTrackData = useLoaderData<typeof loader>();
-  let { revalidate } = useRevalidator();
+  const trackData: CurrentTrackData = useLoaderData<typeof loader>();
+  const { revalidate } = useRevalidator();
 
   useEffect(() => {
-    let id = setInterval(revalidate, 1000);
+    const id = setInterval(revalidate, 1000);
     return () => clearInterval(id);
   }, [revalidate]);
 

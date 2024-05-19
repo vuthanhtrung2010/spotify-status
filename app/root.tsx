@@ -53,13 +53,12 @@ export default function App() {
 
           <div className="credit" id="credit">
             Made by{" "}
-            <a href="https://discord.gg/TR8k3MtjNZ" target="_blank">
+            <a href="https://discord.gg/TR8k3MtjNZ">
               Vũ Thành Trung
             </a>{" "}
             |{" "}
             <a
               href="https://github.com/vuthanhtrung2010/spotify-status"
-              target="_blank"
             >
               Github
             </a>
