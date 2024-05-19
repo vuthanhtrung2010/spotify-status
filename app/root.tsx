@@ -35,7 +35,7 @@ export default function App() {
         <meta name="twitter:description" content="A website which displays my spotify status." />
         <meta name="twitter:image" content="/assets/banner.png" />
 
-        <link rel="shortcut icon" href="/favicon.ico"></link>
+        <link rel="icon" href="/favicon.ico"></link>
         <Meta />
         <Links />
       </head>
