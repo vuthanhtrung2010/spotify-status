@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 import { LinksFunction } from "@remix-run/node";
 import appStylesHref from "./styles.css?url";
