@@ -58,9 +58,8 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://ko-
    - `client_id` you can get from: [Spotify Developer Dashboard](https://developer.spotify.com)
    - `redirect_uri` whatever you set for your domain/website, route `/callback`.
    - `DATABASE_URL` get from your self host postgresql database (supports postgresql version 14 or version 16, not suggesting using lower version).
-   - `secret` you can generate from a password generator or just simply slam your keyboard for a secret.
    - `email` is email that you use to register to Spotify platform.
-   - `PORT` is your port number the website listening to. Default if none it will be listen in http://localhost:3000/
+   - `PORT` is your port number the website listening to. Default if none it will be listen in http://localhost:51342/
 
 </details>
 
