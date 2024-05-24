@@ -1,6 +1,8 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, MetaFunction } from "@remix-run/react";
 import { LinksFunction } from "@remix-run/node";
 import appStylesHref from "./styles.css?url";
+import { SpeedInsights } from "@vercel/speed-insights/remix"
+import { Analytics } from "@vercel/analytics/react"
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appStylesHref },
@@ -73,6 +75,8 @@ export default function App() {
         </div>
         <ScrollRestoration />
         <Scripts />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
