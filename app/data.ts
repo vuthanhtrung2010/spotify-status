@@ -1,4 +1,3 @@
-// app/utils/spotify.server.ts
 import axios from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
 import { PrismaClient } from "@prisma/client";
@@ -6,7 +5,9 @@ import { config } from 'dotenv';
 
 config()
 const prisma = new PrismaClient();
+const caches = new Map();
 
+// Define spotify api everywhere
 export const spotifyApi = new SpotifyWebApi({
   clientId: process.env.client_id,
   clientSecret: process.env.client_secret,
@@ -19,11 +20,23 @@ interface TokenData {
 }
 
 export const getTokenData = async (): Promise<TokenData> => {
-  const user = await prisma.user.findUnique({
-    where: { email: process.env.email! },
-  });
-  if (!user) return { token: null, refreshToken: null };
-  return { token: user.token, refreshToken: user.refreshToken };
+  let token
+  let refresh_token
+  if (caches.has("token") && caches.has("refresh_token")) {
+    token = caches.get("token")
+    refresh_token = caches.get("refresh_token")
+  }
+  else {
+    const user = await prisma.user.findUnique({
+      where: { email: process.env.email! },
+    });
+    token = user?.token
+    refresh_token = user?.refreshToken
+    caches.set("token", token)
+    caches.set("refresh_token", refresh_token)
+  }
+
+  return { token: token, refreshToken: refresh_token };
 };
 
 export const refreshAccessToken = async (refreshToken: string | null) => {
@@ -45,10 +58,13 @@ export const refreshAccessToken = async (refreshToken: string | null) => {
       }
     );
     const { access_token } = response.data;
+
+    // Set token everywhere
     await prisma.user.update({
       where: { email: process.env.email },
       data: { token: access_token },
     });
+    caches.set("token", access_token);
     spotifyApi.setAccessToken(access_token);
     return access_token;
   } catch (error) {
@@ -65,7 +81,7 @@ export const ensureData = async () => {
 export const getCurrentPlayingTrack = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      const { token } = await getTokenData();
+      const { token, refreshToken } = await getTokenData();
       if (token) {
         spotifyApi.setAccessToken(token);
         try {
@@ -85,7 +101,7 @@ export const getCurrentPlayingTrack = () => {
         } catch (error) {
           console.error("Error fetching current track:", error);
           if (error instanceof Error && error.message.includes("The access token expired")) {
-            await refreshAccessToken((await getTokenData()).refreshToken);
+            await refreshAccessToken(refreshToken);
             const refreshedStatus = await getCurrentPlayingTrack();
             resolve(refreshedStatus);
           } else {
@@ -95,8 +111,8 @@ export const getCurrentPlayingTrack = () => {
       } else {
         resolve(null);
       }
-    } catch (initialError) {
-      reject(initialError);
+    } catch (e) {
+      reject(e);
     }
   });
 };
