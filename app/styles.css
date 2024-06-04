@@ -166,7 +166,7 @@ html, body {
 }
 
 .credit {
-  bottom: 20px;
+  bottom: 50px; /* Adjusted space from the bottom */
   font-size: 25px;
 }
 
@@ -179,7 +179,7 @@ html, body {
 }
 
 .space-y-0 {
-  bottom: 35px;
+  bottom: 20px;
   color: #ccc;
 }
 
