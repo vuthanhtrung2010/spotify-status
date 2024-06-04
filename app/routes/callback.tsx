@@ -16,7 +16,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     const data = await spotifyApi.authorizationCodeGrant(code);
     const { access_token, refresh_token, email } = data.body;
     if (!email || !email === process.env.email) {
-      return redirect("/")
+      return redirect(`/?error=invalidEmail&email=${email}`)
     }
     await prisma.user.upsert({
       where: { email },
@@ -34,7 +34,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     spotifyApi.setAccessToken(access_token);
     spotifyApi.setRefreshToken(refresh_token);
 
-    return redirect("/");
+    return redirect(`/`);
   } catch (error) {
     console.error("Error during callback:", error);
     return redirect("/?error=callback");
