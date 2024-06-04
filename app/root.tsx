@@ -1,4 +1,4 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, MetaFunction } from "@remix-run/react";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, MetaFunction, isRouteErrorResponse, useRouteError } from "@remix-run/react";
 import { LinksFunction } from "@remix-run/node";
 import appStylesHref from "./styles.css?url";
 import { SpeedInsights } from "@vercel/speed-insights/remix"
@@ -12,6 +12,29 @@ export const links: LinksFunction = () => [
     type: "image/x-icon",
   },
 ];
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+  return (
+    <html>
+      <head>
+        <title>Oops!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <h1>
+          {isRouteErrorResponse(error)
+            ? `${error.status} ${error.statusText}`
+            : error instanceof Error
+            ? error.message
+            : "Unknown Error"}
+        </h1>
+        <Scripts />
+      </body>
+    </html>
+  );
+}
 
 export const meta: MetaFunction = () => {
   return [
