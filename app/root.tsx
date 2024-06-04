@@ -27,8 +27,8 @@ export function ErrorBoundary() {
           {isRouteErrorResponse(error)
             ? `${error.status} ${error.statusText}`
             : error instanceof Error
-            ? error.message
-            : "Unknown Error"}
+              ? error.message
+              : "Unknown Error"}
         </h1>
         <Scripts />
       </body>
