@@ -4,8 +4,8 @@ import { PrismaClient } from "@prisma/client";
 import { config } from 'dotenv';
 
 config();
-const prisma = new PrismaClient();
-const caches = new Map();
+export const prisma = new PrismaClient();
+export const caches = new Map();
 
 // Define spotify api everywhere
 export const spotifyApi = new SpotifyWebApi({

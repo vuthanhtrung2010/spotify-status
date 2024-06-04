@@ -1,8 +1,6 @@
 import { LoaderFunction, redirect } from "@remix-run/node";
-import { PrismaClient } from "@prisma/client";
 import { spotifyApi } from "~/data";
-
-const prisma = new PrismaClient();
+import { caches, prisma } from "~/data";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
@@ -41,6 +39,8 @@ export const loader: LoaderFunction = async ({ request }) => {
       },
     });
 
+    caches.set("token", access_token)
+    caches.set("refresh_token", refresh_token)
     return redirect(`/`);
   } catch (error) {
     console.error("Error during callback:", error);
