@@ -22,7 +22,7 @@ export const meta: MetaFunction = () => {
     },
     {
       name: "description",
-      content: "A website which displays my spotify status.",
+      content: "A website which displays my Spotify status.",
     },
     {
       name: "viewport",
@@ -31,6 +31,10 @@ export const meta: MetaFunction = () => {
     {
       property: "og:image",
       content: "/assets/banner.png",
+    },
+    // Specify UTF-8 character encoding
+    {
+      charset: "UTF-8",
     },
   ];
 };

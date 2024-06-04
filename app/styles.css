@@ -1,11 +1,26 @@
-.container {
+/* Universal reset for margin, padding, and box-sizing */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
   background-color: #04022b;
+  color: #fff;
+  scroll-behavior: smooth;
+}
+
+/* Container styling */
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  color: #ffffff;
 }
 
 .status {
@@ -27,7 +42,6 @@
 .track-image {
   max-width: 165px;
   max-height: 165px;
-  width: auto;
   border-radius: 5px;
   margin-right: 20px;
 }
@@ -57,42 +71,43 @@
   position: relative;
 }
 
-.progress-bar-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background-color: #555;
-  width: 100%;
-  z-index: 1;
-}
-
+.progress-bar-background,
 .progress-bar-fill {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
+}
+
+.progress-bar-background {
+  background-color: #555;
+  width: 100%;
+}
+
+.progress-bar-fill {
   background-color: #beb8b8;
   width: 0%;
   transition: width 0.5s ease;
-  z-index: 2;
+}
+
+.artist-name,
+.track-name,
+.album-name,
+.user-name {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
 }
 
 .artist-name {
-  font-weight: bold;
-  font-family: Arial, sans-serif;
   font-size: 16px;
   margin-top: 20px;
 }
 
 .track-name {
-  font-weight: bold;
-  font-family: Arial, sans-serif;
   font-size: 24px;
 }
 
 .album-name {
-  font-family: Arial, sans-serif;
   font-size: 16px;
   margin-top: 0;
 }
@@ -103,14 +118,9 @@
   font-family: Arial, sans-serif;
   font-size: 14px;
   margin-top: 5px;
-  position: relative;
   width: 100%;
-  bottom: -6px;
-  left: 0;
-}
-
-.time-display span {
   position: relative;
+  bottom: -6px;
 }
 
 .artist-name a,
@@ -143,23 +153,24 @@
 }
 
 .user-name {
-  font-weight: bold;
   font-size: 26px;
+}
+
+.credit,
+.space-y-0 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
   color: white;
 }
 
 .credit {
-  position: absolute;
   bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
   font-size: 25px;
-  color: white;
 }
 
 .credit a {
-  color: white;
   text-decoration: underline;
 }
 
@@ -168,48 +179,8 @@
 }
 
 .space-y-0 {
-  position: absolute;
   bottom: 35px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
   color: #ccc;
-}
-
-body::-webkit-scrollbar {
-  width: 16px;
-  background-color: #333333;
-}
-
-body::-webkit-scrollbar-track {
-  border-radius: 8px;
-}
-
-body::-webkit-scrollbar-thumb {
-  height: 56px;
-  border-radius: 10px;
-  border: 4px solid transparent;
-  background-clip: content-box;
-  background-color: #888888;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  background-color: #555555;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
 }
 
 .animate-float {
