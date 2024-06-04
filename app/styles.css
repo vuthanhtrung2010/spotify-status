@@ -26,12 +26,12 @@ html, body {
 .status {
   display: flex;
   align-items: center;
-  min-width: 600px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  min-width: 37.5em;
+  padding: 1.25em;
+  border: 0.0625em solid #ccc;
+  border-radius: 0.3125em;
   background-color: #0a081f;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.1);
 }
 
 .track-info-container {
@@ -40,10 +40,10 @@ html, body {
 }
 
 .track-image {
-  max-width: 165px;
-  max-height: 165px;
-  border-radius: 5px;
-  margin-right: 20px;
+  max-width: 10.3125em;
+  max-height: 10.3125em;
+  border-radius: 0.3125em;
+  margin-right: 1.25em;
 }
 
 .track-details {
@@ -62,11 +62,11 @@ html, body {
 
 .progress-bar {
   flex: 1;
-  height: 8px;
+  height: 0.5em;
   background-color: #333;
-  border-radius: 4px;
-  margin-left: 10px;
-  min-width: 200px;
+  border-radius: 0.25em;
+  margin-left: 0.625em;
+  min-width: 12.5em;
   overflow: hidden;
   position: relative;
 }
@@ -99,16 +99,16 @@ html, body {
 }
 
 .artist-name {
-  font-size: 16px;
-  margin-top: 20px;
+  font-size: 1em;
+  margin-top: 1.25em;
 }
 
 .track-name {
-  font-size: 24px;
+  font-size: 1.5em;
 }
 
 .album-name {
-  font-size: 16px;
+  font-size: 1em;
   margin-top: 0;
 }
 
@@ -116,11 +116,11 @@ html, body {
   display: flex;
   justify-content: space-between;
   font-family: Arial, sans-serif;
-  font-size: 14px;
-  margin-top: 5px;
+  font-size: 0.875em;
+  margin-top: 0.3125em;
   width: 100%;
   position: relative;
-  bottom: -6px;
+  bottom: -0.375em;
 }
 
 .artist-name a,
@@ -139,21 +139,21 @@ html, body {
 
 .user-info {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 1.25em;
+  right: 1.25em;
   display: flex;
   align-items: center;
 }
 
 .user-avatar {
-  width: 60px;
-  height: 60px;
+  width: 3.75em;
+  height: 3.75em;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 0.625em;
 }
 
 .user-name {
-  font-size: 26px;
+  font-size: 1.625em;
 }
 
 .credit,
@@ -167,7 +167,7 @@ html, body {
 
 .credit {
   bottom: 50px; /* Adjusted space from the bottom */
-  font-size: 25px;
+  font-size: 1.5625em;
 }
 
 .credit a {
@@ -179,7 +179,7 @@ html, body {
 }
 
 .space-y-0 {
-  bottom: 20px;
+  bottom: 1.25em;
   color: #ccc;
 }
 
