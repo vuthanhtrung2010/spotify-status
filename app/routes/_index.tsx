@@ -3,11 +3,16 @@ import { LoaderFunction, json } from "@remix-run/node";
 import { useLoaderData, useRevalidator } from "@remix-run/react";
 import { getCurrentPlayingTrack } from "../data";
 import { CurrentTrackData } from "~/types";
+import { cacheAssets } from "remix-utils/cache-assets";
 
 export const loader: LoaderFunction = async () => {
   const trackData = await getCurrentPlayingTrack();
   return json(trackData);
 };
+
+cacheAssets({ cacheName: "assets", buildPath: "/build/" }).catch((error) => {
+	// do something with the error, or not
+});
 
 export default function Index() {
   const trackData: CurrentTrackData = useLoaderData<typeof loader>();
