@@ -7,16 +7,17 @@ const prisma = new PrismaClient();
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
-  const email = url.searchParams.get("email");
 
-  if (!code || !email || email !== process.env.email) {
+  if (!code) {
     return redirect("/");
   }
 
   try {
     const data = await spotifyApi.authorizationCodeGrant(code);
-    const { access_token, refresh_token } = data.body;
-
+    const { access_token, refresh_token, email } = data.body;
+    if (!email || !email === process.env.email) {
+      return redirect("/")
+    }
     await prisma.user.upsert({
       where: { email },
       update: {
