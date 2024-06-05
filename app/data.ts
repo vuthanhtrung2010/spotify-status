@@ -1,6 +1,6 @@
 import axios from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client/edge";
 import { config } from 'dotenv';
 
 config();
