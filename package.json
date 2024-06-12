@@ -13,7 +13,6 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "^0.44.1",
     "@prisma/client": "^5.13.0",
     "@remix-run/node": "^2.9.2",
     "@remix-run/react": "^2.9.2",
