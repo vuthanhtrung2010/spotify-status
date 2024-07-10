@@ -6,9 +6,8 @@
     "dev": "remix vite:dev",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/server/index.js",
-    "build": "npm-run-all build:prisma build:schema build:compile",
+    "build": "npm-run-all build:schema build:compile",
     "build:compile": "remix vite:build",
-    "build:prisma": "prisma generate",
     "build:schema": "prisma migrate dev --name init",
     "typecheck": "tsc"
   },
