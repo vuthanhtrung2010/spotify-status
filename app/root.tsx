@@ -55,7 +55,18 @@ export const meta: MetaFunction = () => {
       property: "og:image",
       content: "/assets/banner.png",
     },
-    // Specify UTF-8 character encoding
+    {
+      name: "twitter:title",
+      content: "Vũ Thành Trung"
+    },
+    {
+      name: "twitter:card",
+      content: "summary_large_image"
+    },
+    {
+      name: "twitter:description",
+      content: "A website which displays my Spotify status."
+    },
     {
       charset: "UTF-8",
     },
