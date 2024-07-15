@@ -1,8 +1,17 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, MetaFunction, isRouteErrorResponse, useRouteError } from "@remix-run/react";
+import {
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  MetaFunction,
+  isRouteErrorResponse,
+  useRouteError,
+} from "@remix-run/react";
 import { LinksFunction } from "@remix-run/node";
 import appStylesHref from "./styles.css?url";
-import { SpeedInsights } from "@vercel/speed-insights/remix"
-import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/remix";
+import { Analytics } from "@vercel/analytics/react";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appStylesHref },
@@ -27,8 +36,8 @@ export function ErrorBoundary() {
           {isRouteErrorResponse(error)
             ? `${error.status} ${error.statusText}`
             : error instanceof Error
-              ? error.message
-              : "Unknown Error"}
+            ? error.message
+            : "Unknown Error"}
         </h1>
         <Scripts />
       </body>
@@ -57,15 +66,15 @@ export const meta: MetaFunction = () => {
     },
     {
       name: "twitter:title",
-      content: "Vũ Thành Trung"
+      content: "Vũ Thành Trung",
     },
     {
       name: "twitter:card",
-      content: "summary_large_image"
+      content: "summary_large_image",
     },
     {
       name: "twitter:description",
-      content: "A website which displays my Spotify status."
+      content: "A website which displays my Spotify status.",
     },
     {
       charset: "UTF-8",
@@ -92,14 +101,8 @@ export default function App() {
           </div>
 
           <div className="credit" id="credit">
-            Made by{" "}
-            <a href="https://discord.gg/TR8k3MtjNZ">
-              Vũ Thành Trung
-            </a>{" "}
-            |{" "}
-            <a
-              href="https://github.com/vuthanhtrung2010/spotify-status"
-            >
+            Made by <a href="https://discord.gg/TR8k3MtjNZ">Vũ Thành Trung</a> |{" "}
+            <a href="https://github.com/vuthanhtrung2010/spotify-status">
               Github
             </a>
           </div>

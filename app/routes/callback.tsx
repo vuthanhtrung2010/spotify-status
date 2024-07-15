@@ -13,17 +13,17 @@ export const loader: LoaderFunction = async ({ request }) => {
   try {
     const data = await spotifyApi.authorizationCodeGrant(code);
     const { access_token, refresh_token } = data.body;
-    
+
     // Temp set access token and refresh
     spotifyApi.setAccessToken(access_token);
     spotifyApi.setRefreshToken(refresh_token);
-    
+
     const user_data = await spotifyApi.getMe();
     const email = user_data.body.email;
     if (!email || email !== process.env.email) {
       spotifyApi.setAccessToken("");
       spotifyApi.setRefreshToken("");
-      return redirect(`/?error=invalidEmail&email=${email}`)
+      return redirect(`/?error=invalidEmail&email=${email}`);
     }
     // If match then post it to db.
     await prisma.user.upsert({
@@ -39,8 +39,8 @@ export const loader: LoaderFunction = async ({ request }) => {
       },
     });
 
-    caches.set("token", access_token)
-    caches.set("refresh_token", refresh_token)
+    caches.set("token", access_token);
+    caches.set("refresh_token", refresh_token);
     return redirect(`/`);
   } catch (error) {
     console.error("Error during callback:", error);

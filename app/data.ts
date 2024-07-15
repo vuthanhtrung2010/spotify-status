@@ -18,20 +18,19 @@ interface TokenData {
 }
 
 export const getTokenData = async (): Promise<TokenData> => {
-  let token
-  let refresh_token
+  let token;
+  let refresh_token;
   if (caches.has("token") && caches.has("refresh_token")) {
-    token = caches.get("token")
-    refresh_token = caches.get("refresh_token")
-  }
-  else {
+    token = caches.get("token");
+    refresh_token = caches.get("refresh_token");
+  } else {
     const user = await prisma.user.findUnique({
       where: { email: process.env.email! },
     });
-    token = user?.token
-    refresh_token = user?.refreshToken
-    caches.set("token", token)
-    caches.set("refresh_token", refresh_token)
+    token = user?.token;
+    refresh_token = user?.refreshToken;
+    caches.set("token", token);
+    caches.set("refresh_token", refresh_token);
   }
 
   return { token: token, refreshToken: refresh_token };
@@ -91,7 +90,10 @@ export const getCurrentPlayingTrack = () => {
             return;
           }
 
-          if (!status.body?.is_playing || typeof status.body?.is_playing === "undefined") {
+          if (
+            !status.body?.is_playing ||
+            typeof status.body?.is_playing === "undefined"
+          ) {
             resolve({ ...status.body, is_playing: false });
             return;
           }
@@ -99,7 +101,10 @@ export const getCurrentPlayingTrack = () => {
           resolve(status.body);
         } catch (error) {
           console.error("Error fetching current track:", error);
-          if (error instanceof Error && error.message.includes("The access token expired")) {
+          if (
+            error instanceof Error &&
+            error.message.includes("The access token expired")
+          ) {
             await refreshAccessToken(refreshToken);
             const refreshedStatus = await getCurrentPlayingTrack();
             resolve(refreshedStatus);

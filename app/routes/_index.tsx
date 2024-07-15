@@ -11,7 +11,7 @@ export const loader: LoaderFunction = async () => {
 };
 
 cacheAssets({ cacheName: "assets", buildPath: "/build/" }).catch((error) => {
-	// do something with the error, or not
+  // do something with the error, or not
 });
 
 export default function Index() {
