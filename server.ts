@@ -16,6 +16,9 @@ const viteDevServer =
         })
 
 const app = express();
+
+app.disable('x-powered-by');
+
 app.use(
     viteDevServer
         ? viteDevServer.middlewares
