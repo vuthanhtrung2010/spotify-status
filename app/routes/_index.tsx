@@ -3,11 +3,16 @@ import { LoaderFunction, json } from "@remix-run/node";
 import { useLoaderData, useRevalidator } from "@remix-run/react";
 import { getCurrentPlayingTrack } from "../data";
 import { CurrentTrackData } from "~/types";
+import { cacheAssets } from "remix-utils/cache-assets";
 
 export const loader: LoaderFunction = async () => {
   const trackData = await getCurrentPlayingTrack();
   return json(trackData);
 };
+
+cacheAssets({ cacheName: "assets", buildPath: "/build/" }).catch((error) => {
+  // do something with the error, or not
+});
 
 export default function Index() {
   const trackData: CurrentTrackData = useLoaderData<typeof loader>();
@@ -18,8 +23,8 @@ export default function Index() {
     return () => clearInterval(id);
   }, [revalidate]);
 
-  // CHeck if playing or nah
-  if (!trackData || !trackData.is_playing) {
+  // Check if playing or nah
+  if (!trackData?.is_playing) {
     return (
       <div className="container" id="container">
         <div className="status" id="status">
@@ -60,7 +65,7 @@ export default function Index() {
             <div className="time-display">
               <span className="start-time">00:00</span>
               <span className="end-time">
-                {new Date(track.duration_ms).toISOString().substr(14, 5)}
+                {new Date(track.duration_ms).toISOString().slice(14, 19)}
               </span>
             </div>
             <p className="artist-name">

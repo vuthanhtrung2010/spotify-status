@@ -1,6 +1,17 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, MetaFunction } from "@remix-run/react";
+import {
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  MetaFunction,
+  isRouteErrorResponse,
+  useRouteError,
+} from "@remix-run/react";
 import { LinksFunction } from "@remix-run/node";
 import appStylesHref from "./styles.css?url";
+import { SpeedInsights } from "@vercel/speed-insights/remix";
+import { Analytics } from "@vercel/analytics/react";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appStylesHref },
@@ -11,6 +22,33 @@ export const links: LinksFunction = () => [
   },
 ];
 
+export function ErrorBoundary() {
+  const error = useRouteError();
+  let errorMessage;
+
+  if (isRouteErrorResponse(error)) {
+    errorMessage = `${error.status} ${error.statusText}`;
+  } else if (error instanceof Error) {
+    errorMessage = error.message;
+  } else {
+    errorMessage = "Unknown Error";
+  }
+
+  return (
+    <html lang="en">
+      <head>
+        <title>Oops!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <h1>{errorMessage}</h1>
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
 export const meta: MetaFunction = () => {
   return [
     { title: "Trung's Spotify Status" },
@@ -20,7 +58,7 @@ export const meta: MetaFunction = () => {
     },
     {
       name: "description",
-      content: "A website which displays my spotify status.",
+      content: "A website which displays my Spotify status.",
     },
     {
       name: "viewport",
@@ -29,6 +67,21 @@ export const meta: MetaFunction = () => {
     {
       property: "og:image",
       content: "/assets/banner.png",
+    },
+    {
+      name: "twitter:title",
+      content: "Vũ Thành Trung",
+    },
+    {
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+    {
+      name: "twitter:description",
+      content: "A website which displays my Spotify status.",
+    },
+    {
+      charset: "UTF-8",
     },
   ];
 };
@@ -52,14 +105,8 @@ export default function App() {
           </div>
 
           <div className="credit" id="credit">
-            Made by{" "}
-            <a href="https://discord.gg/TR8k3MtjNZ">
-              Vũ Thành Trung
-            </a>{" "}
-            |{" "}
-            <a
-              href="https://github.com/vuthanhtrung2010/spotify-status"
-            >
+            Made by <a href="https://discord.gg/TR8k3MtjNZ">Vũ Thành Trung</a> |{" "}
+            <a href="https://github.com/vuthanhtrung2010/spotify-status">
               Github
             </a>
           </div>
@@ -73,6 +120,8 @@ export default function App() {
         </div>
         <ScrollRestoration />
         <Scripts />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

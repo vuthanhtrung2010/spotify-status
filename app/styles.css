@@ -1,22 +1,38 @@
-.container {
+/* Universal reset for margin, padding, and box-sizing */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
   background-color: #04022b;
+  color: #fff;
+  scroll-behavior: smooth;
+}
+
+/* Container styling */
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  color: #ffffff;
 }
 
 .status {
   display: flex;
   align-items: center;
-  min-width: 600px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  min-width: 37.5em;
+  padding: 1.25em;
+  border: 0.0625em solid #ccc;
+  border-radius: 0.3125em;
   background-color: #0a081f;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.1);
 }
 
 .track-info-container {
@@ -25,11 +41,10 @@
 }
 
 .track-image {
-  max-width: 165px;
-  max-height: 165px;
-  width: auto;
-  border-radius: 5px;
-  margin-right: 20px;
+  max-width: 10.3125em;
+  max-height: 10.3125em;
+  border-radius: 0.3125em;
+  margin-right: 1.25em;
 }
 
 .track-details {
@@ -48,69 +63,68 @@
 
 .progress-bar {
   flex: 1;
-  height: 8px;
+  height: 0.5em;
   background-color: #333;
-  border-radius: 4px;
-  margin-left: 10px;
-  min-width: 200px;
+  border-radius: 0.25em;
+  margin-left: 0.625em;
+  min-width: 12.5em;
   overflow: hidden;
   position: relative;
 }
 
-.progress-bar-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background-color: #555;
-  width: 100%;
-  z-index: 1;
-}
-
+.progress-bar-background,
 .progress-bar-fill {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
+}
+
+.progress-bar-background {
+  background-color: #555;
+  width: 100%;
+}
+
+.progress-bar-fill {
   background-color: #beb8b8;
   width: 0%;
   transition: width 0.5s ease;
-  z-index: 2;
+}
+
+.artist-name,
+.track-name,
+.album-name,
+.user-name {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
 }
 
 .artist-name {
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  margin-top: 20px;
+  font-size: 1em;
+  margin-top: 1.1em;
 }
 
 .track-name {
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  font-size: 24px;
+  font-size: 1.5em;
+  margin-top: 0.625em;
+  margin-bottom: 0.625em;
 }
 
 .album-name {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  margin-top: 0;
+  font-size: 1em;
+  margin-top: 0.625em;
+  margin-bottom: 0.625em;
 }
 
 .time-display {
   display: flex;
   justify-content: space-between;
   font-family: Arial, sans-serif;
-  font-size: 14px;
-  margin-top: 5px;
-  position: relative;
+  font-size: 0.875em;
+  margin-top: 0.3125em;
   width: 100%;
-  bottom: -6px;
-  left: 0;
-}
-
-.time-display span {
   position: relative;
+  bottom: -0.375em;
 }
 
 .artist-name a,
@@ -129,37 +143,38 @@
 
 .user-info {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 1.25em;
+  right: 1.25em;
   display: flex;
   align-items: center;
 }
 
 .user-avatar {
-  width: 60px;
-  height: 60px;
+  width: 3.75em;
+  height: 3.75em;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 0.625em;
 }
 
 .user-name {
-  font-weight: bold;
-  font-size: 26px;
+  font-size: 1.625em;
+}
+
+.credit,
+.space-y-0 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
   color: white;
 }
 
 .credit {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  font-size: 25px;
-  color: white;
+  bottom: 50px;
+  font-size: 1.5625em;
 }
 
 .credit a {
-  color: white;
   text-decoration: underline;
 }
 
@@ -168,48 +183,8 @@
 }
 
 .space-y-0 {
-  position: absolute;
-  bottom: 35px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
+  bottom: 1.25em;
   color: #ccc;
-}
-
-body::-webkit-scrollbar {
-  width: 16px;
-  background-color: #333333;
-}
-
-body::-webkit-scrollbar-track {
-  border-radius: 8px;
-}
-
-body::-webkit-scrollbar-thumb {
-  height: 56px;
-  border-radius: 10px;
-  border: 4px solid transparent;
-  background-clip: content-box;
-  background-color: #888888;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  background-color: #555555;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
 }
 
 .animate-float {

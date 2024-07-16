@@ -1,15 +1,11 @@
 import { LoaderFunction, redirect } from "@remix-run/node";
-import { PrismaClient } from "@prisma/client";
-import { spotifyApi } from "~/data";
-
-const prisma = new PrismaClient();
+import { caches, prisma, spotifyApi } from "~/data";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
-  const email = url.searchParams.get("email");
 
-  if (!code || !email || email !== process.env.email) {
+  if (!code) {
     return redirect("/");
   }
 
@@ -17,6 +13,18 @@ export const loader: LoaderFunction = async ({ request }) => {
     const data = await spotifyApi.authorizationCodeGrant(code);
     const { access_token, refresh_token } = data.body;
 
+    // Temp set access token and refresh
+    spotifyApi.setAccessToken(access_token);
+    spotifyApi.setRefreshToken(refresh_token);
+
+    const user_data = await spotifyApi.getMe();
+    const email = user_data.body.email;
+    if (!email || email !== process.env.email) {
+      spotifyApi.setAccessToken("");
+      spotifyApi.setRefreshToken("");
+      return redirect(`/?error=invalidEmail&email=${email}`);
+    }
+    // If match then post it to db.
     await prisma.user.upsert({
       where: { email },
       update: {
@@ -30,10 +38,9 @@ export const loader: LoaderFunction = async ({ request }) => {
       },
     });
 
-    spotifyApi.setAccessToken(access_token);
-    spotifyApi.setRefreshToken(refresh_token);
-
-    return redirect("/");
+    caches.set("token", access_token);
+    caches.set("refresh_token", refresh_token);
+    return redirect(`/`);
   } catch (error) {
     console.error("Error during callback:", error);
     return redirect("/?error=callback");

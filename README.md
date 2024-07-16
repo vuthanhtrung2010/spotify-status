@@ -41,8 +41,8 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://ko-
 1.  Ensure that you have installed all node modules by running `npm i`
 2.  Ensure that you have renamed `.env.example` to `.env` and added environment variables
 3.  Now run `npm run build` then run `npm start` or `npm start` or `pm2 start npm --name Status -- start` if you using a VPS to run the website as production mode. You can also run the website as developer mode by `npm run dev` or `pm2 start "npm run dev" --name Status`. Might add `npx` to the prefix of `pm2` if you are not using the runtime version!
-4. Now go to the `/login` route and login to your Spotify Account!
-5. Enjoy!
+4.  Now go to the `/login` route and login to your Spotify Account!
+5.  Enjoy!
 
 </details>
 
@@ -58,9 +58,8 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://ko-
    - `client_id` you can get from: [Spotify Developer Dashboard](https://developer.spotify.com)
    - `redirect_uri` whatever you set for your domain/website, route `/callback`.
    - `DATABASE_URL` get from your self host postgresql database (supports postgresql version 14 or version 16, not suggesting using lower version).
-   - `secret` you can generate from a password generator or just simply slam your keyboard for a secret.
    - `email` is email that you use to register to Spotify platform.
-   - `PORT` is your port number the website listening to. Default if none it will be listen in http://localhost:3000/
+   - `PORT` is your port number the website listening to. Default if none it will be listen in http://localhost:51342/
 
 </details>
 

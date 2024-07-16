@@ -1,4 +1,4 @@
-import { LoaderFunction, redirect} from "@remix-run/node";
+import { LoaderFunction, redirect } from "@remix-run/node";
 import { spotifyApi } from "~/data";
 
 export const loader: LoaderFunction = async () => {
