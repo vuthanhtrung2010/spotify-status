@@ -43,7 +43,7 @@ export const refreshAccessToken = async (refreshToken: string | null) => {
       "https://accounts.spotify.com/api/token",
       new URLSearchParams({
         grant_type: "refresh_token",
-        refresh_token: refreshToken!,
+        refresh_token: refreshToken,
       }),
       {
         headers: {
@@ -109,14 +109,14 @@ export const getCurrentPlayingTrack = () => {
             const refreshedStatus = await getCurrentPlayingTrack();
             resolve(refreshedStatus);
           } else {
-            reject(error);
+            reject(new Error(error as string));
           }
         }
       } else {
         resolve(null);
       }
     } catch (e) {
-      reject(e);
+      reject(new Error(e as string));
     }
   });
 };

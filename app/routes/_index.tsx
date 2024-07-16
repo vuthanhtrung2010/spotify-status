@@ -23,8 +23,8 @@ export default function Index() {
     return () => clearInterval(id);
   }, [revalidate]);
 
-  // CHeck if playing or nah
-  if (!trackData || !trackData.is_playing) {
+  // Check if playing or nah
+  if (!trackData.is_playing) {
     return (
       <div className="container" id="container">
         <div className="status" id="status">
@@ -65,7 +65,7 @@ export default function Index() {
             <div className="time-display">
               <span className="start-time">00:00</span>
               <span className="end-time">
-                {new Date(track.duration_ms).toISOString().substr(14, 5)}
+                {new Date(track.duration_ms).toISOString().substring(14, 5)}
               </span>
             </div>
             <p className="artist-name">

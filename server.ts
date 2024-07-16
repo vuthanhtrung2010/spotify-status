@@ -1,9 +1,8 @@
 import { createRequestHandler } from "@remix-run/express";
 import express from "express";
 import * as vite from "vite";
-import { broadcastDevReady } from "@remix-run/node";
+// import { broadcastDevReady } from "@remix-run/node";
 import chalk from "chalk";
-import path from "path";
 
 if (!process.env.client_id) throw new Error(chalk.red(`[@vuthanhtrung2010/spotify-status] Error: `) + "No Spotify Client ID provided.");
 if (!process.env.client_secret) throw new Error(chalk.red(`[@vuthanhtrung2010/spotify-status] Error: `) + "No Spotify Client Secret provided.");
@@ -38,5 +37,4 @@ app.all("*", createRequestHandler({ build }));
 const port = process.env.PORT || 3000;
 app.listen(port, async () => {
     console.log(`App listening on http://localhost:${port}`);
-    // broadcastDevReady(await import(BUILD_DIR));
 });

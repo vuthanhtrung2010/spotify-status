@@ -24,21 +24,25 @@ export const links: LinksFunction = () => [
 
 export function ErrorBoundary() {
   const error = useRouteError();
+  let errorMessage;
+
+  if (isRouteErrorResponse(error)) {
+    errorMessage = `${error.status} ${error.statusText}`;
+  } else if (error instanceof Error) {
+    errorMessage = error.message;
+  } else {
+    errorMessage = "Unknown Error";
+  }
+
   return (
-    <html>
+    <html lang="en">
       <head>
         <title>Oops!</title>
         <Meta />
         <Links />
       </head>
       <body>
-        <h1>
-          {isRouteErrorResponse(error)
-            ? `${error.status} ${error.statusText}`
-            : error instanceof Error
-            ? error.message
-            : "Unknown Error"}
-        </h1>
+        <h1>{errorMessage}</h1>
         <Scripts />
       </body>
     </html>
