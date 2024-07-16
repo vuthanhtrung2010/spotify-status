@@ -1,6 +1,5 @@
 import { LoaderFunction, redirect } from "@remix-run/node";
-import { spotifyApi } from "~/data";
-import { caches, prisma } from "~/data";
+import { caches, prisma, spotifyApi } from "~/data";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);

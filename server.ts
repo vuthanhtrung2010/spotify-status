@@ -1,7 +1,6 @@
 import { createRequestHandler } from "@remix-run/express";
 import express from "express";
 import * as vite from "vite";
-// import { broadcastDevReady } from "@remix-run/node";
 import chalk from "chalk";
 
 if (!process.env.client_id) throw new Error(chalk.red(`[@vuthanhtrung2010/spotify-status] Error: `) + "No Spotify Client ID provided.");
