@@ -24,7 +24,7 @@ export default function Index() {
   }, [revalidate]);
 
   // Check if playing or nah
-  if (!trackData.is_playing) {
+  if (!trackData?.is_playing) {
     return (
       <div className="container" id="container">
         <div className="status" id="status">
