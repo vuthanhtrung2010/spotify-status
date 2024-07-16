@@ -65,7 +65,7 @@ export default function Index() {
             <div className="time-display">
               <span className="start-time">00:00</span>
               <span className="end-time">
-                {new Date(track.duration_ms).toISOString().slice(14, 5)}
+                {new Date(track.duration_ms).toISOString().slice(14, 19)}
               </span>
             </div>
             <p className="artist-name">
