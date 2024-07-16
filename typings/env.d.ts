@@ -8,6 +8,7 @@ declare global {
       client_id: string;
       client_secret: string;
       secret?: string;
+      NODE_ENV: "production" | "dev" | "development";
     }
   }
 }
