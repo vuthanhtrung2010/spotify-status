@@ -12,19 +12,23 @@ export default defineConfig({
     port: process.env.PORT || 3000,
   },
 
-  plugins: [remix({
-    future: {
-      v3_fetcherPersist: true,
-      v3_relativeSplatPath: true,
-      v3_throwAbortReason: true,
-    },
-  }), tsconfigPaths(), sentryVitePlugin({
-    org: "trung-development",
-    project: "spotify-status",
-    authToken: process.env.SENTRY_AUTH_TOKEN,
-  })],
+  plugins: [
+    remix({
+      future: {
+        v3_fetcherPersist: true,
+        v3_relativeSplatPath: true,
+        v3_throwAbortReason: true,
+      },
+    }),
+    tsconfigPaths(),
+    sentryVitePlugin({
+      org: "trung-development",
+      project: "spotify-status",
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+    }),
+  ],
 
   build: {
-    sourcemap: true
-  }
+    sourcemap: true,
+  },
 });

@@ -13,9 +13,11 @@ import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 
-export const handleError = Sentry.wrapHandleErrorWithSentry((error, { request }) => {
-  // Custom handleError implementation
-});
+export const handleError = Sentry.wrapHandleErrorWithSentry(
+  (error, { request }) => {
+    // Custom handleError implementation
+  }
+);
 
 const ABORT_DELAY = 5_000;
 
