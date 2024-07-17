@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "remix vite:dev",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "NODE_OPTIONS='--import ./instrumentation.server.mjs' remix-serve ./build/server/index.js",
+    "start": "cross-env NODE_ENV=production bun run server.ts",
     "build": "npm-run-all build:schema build:compile",
     "build:compile": "remix vite:build",
     "build:schema": "prisma migrate dev --name init",
