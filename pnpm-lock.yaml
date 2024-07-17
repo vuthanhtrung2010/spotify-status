@@ -124,7 +124,7 @@ importers:
         specifier: ^6.0.0
         version: 6.2.2
       prisma:
-        specifier: ^5.13.0
+        specifier: ^5.17.0
         version: 5.17.0
       typescript:
         specifier: ^5.1.6
@@ -135,6 +135,9 @@ importers:
       vite-tsconfig-paths:
         specifier: ^4.2.1
         version: 4.3.2(typescript@5.5.3)(vite@5.3.4(@types/node@20.14.11))
+      yaml:
+        specifier: ^2.4.5
+        version: 2.4.5
 
 packages:
 
@@ -1585,7 +1588,6 @@ packages:
 
   bun@1.1.20:
     resolution: {integrity: sha512-aqLmvaz0/vLUiCrOXtAsf7pCSOS/qXieYDsq8COa3+fIgMK05CjZt9m9r7DC+tjKy7hH8uKSNTapQOr/kX8gIA==}
-    cpu: [arm64, x64]
     os: [darwin, linux, win32]
     hasBin: true
 
