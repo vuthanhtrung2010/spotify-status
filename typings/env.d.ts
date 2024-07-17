@@ -9,6 +9,8 @@ declare global {
       client_secret: string;
       secret?: string;
       NODE_ENV: "production" | "dev" | "development";
+      SENTRY_AUTH_TOKEN?: string;
+      SENTRY_DSN_ADDRESS?: string;
     }
   }
 }
