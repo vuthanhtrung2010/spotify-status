@@ -8,3 +8,8 @@ node_modules
 .flaskenv*
 !.env.project
 !.env.vault
+# Sentry Config File
+.sentryclirc
+
+# Sentry Config File
+.env.sentry-build-plugin
