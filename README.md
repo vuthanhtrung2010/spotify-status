@@ -15,8 +15,8 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://ko-
   <summary>Click to expand</summary>
 
 - [nodejs](https://nodejs.org) version 20 or higher, I recommend the latest STABLE version
-- A VPS would be advised, so you don't need to keep your PC/laptop/RasPi 24/7 online!
-- At least 50MB of RAM and 0.25vCPU
+- A VPS would be advised, so you don't need to keep your PC/Laptop/RasPi 24/7 online!
+- At least 256MB of RAM and 0.5vCPU
 
 </details>
 
@@ -56,10 +56,12 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://ko-
 1. `./.env`
    - `client_secret` you can get from: [Spotify Developer Dashboard](https://developer.spotify.com)
    - `client_id` you can get from: [Spotify Developer Dashboard](https://developer.spotify.com)
-   - `redirect_uri` whatever you set for your domain/website, route `/callback`.
-   - `DATABASE_URL` get from your self host postgresql database (supports postgresql version 14 or version 16, not suggesting using lower version).
+   - `redirect_uri` whatever you set for your domain/website, route `/callback`. Eg: `https://spotify.trung.is-a.dev/callback`
+   - `DATABASE_URL` get from your self hosted database. See full list of supported database by prisma ORM [here](https://www.prisma.io/docs/orm/reference/supported-databases).
    - `email` is email that you use to register to Spotify platform.
-   - `PORT` is your port number the website listening to. Default if none it will be listen in http://localhost:51342/
+   - `PORT` is your port number the website listening to. Default listening port will be 3000 for this branch.
+   - `SENTRY_AUTH_TOKEN` (optional for who want to track errors/performance): Get it from [Sentry Dashboard](https://sentry.io/settings/auth-tokens/).
+   - `SENTRY_DSN_ADDRESS` (optional for who want to track errors/performance): Get it from your Sentry project.
 
 </details>
 
