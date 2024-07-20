@@ -39,3 +39,5 @@ next-env.d.ts
 .flaskenv*
 !.env.project
 !.env.vault
+# Sentry Config File
+.env.sentry-build-plugin
