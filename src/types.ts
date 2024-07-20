@@ -1,4 +1,3 @@
-// app/utils/types.ts
 export interface Artist {
   external_urls: {
     spotify: string;
@@ -21,8 +20,8 @@ export interface Image {
 }
 
 export interface TrackItem {
-  album: Album;
-  artists: Artist[];
+  album?: Album;
+  artists?: Artist[];
   name: string;
   duration_ms: number;
   external_urls: {
@@ -32,7 +31,7 @@ export interface TrackItem {
 
 export interface CurrentTrackData {
   is_playing: boolean;
-  is_pausing: boolean;
-  item: TrackItem;
-  progress_ms: number;
+  is_pausing?: boolean;
+  item: TrackItem | null;
+  progress_ms: number | null;
 }

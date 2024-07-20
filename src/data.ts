@@ -1,6 +1,7 @@
 import axios from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
 import { PrismaClient } from "@prisma/client";
+import { CurrentTrackData } from "./types";
 
 export const prisma = new PrismaClient();
 export const caches = new Map();
@@ -75,7 +76,7 @@ export const ensureData = async () => {
   if (refreshToken) await refreshAccessToken(refreshToken);
 };
 
-export const getCurrentPlayingTrack = () => {
+export const getCurrentPlayingTrack = (): Promise<CurrentTrackData | null> => {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
     try {

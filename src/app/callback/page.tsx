@@ -1,12 +1,15 @@
-import { LoaderFunction, redirect } from "@remix-run/node";
-import { caches, prisma, spotifyApi } from "~/data";
+import { redirect } from 'next/navigation';
+import { spotifyApi, prisma, caches } from '@/data';
 
-export const loader: LoaderFunction = async ({ request }) => {
-  const url = new URL(request.url);
-  const code = url.searchParams.get("code");
+export default async function Callback({
+  searchParams,
+}: {
+  searchParams: { code: string | undefined };
+}) {
+  const { code } = searchParams;
 
   if (!code) {
-    return redirect("/");
+    redirect('/');
   }
 
   try {
@@ -20,10 +23,11 @@ export const loader: LoaderFunction = async ({ request }) => {
     const user_data = await spotifyApi.getMe();
     const email = user_data.body.email;
     if (!email || email !== process.env.email) {
-      spotifyApi.setAccessToken("");
-      spotifyApi.setRefreshToken("");
-      return redirect(`/?error=invalidEmail&email=${email}`);
+      spotifyApi.setAccessToken('');
+      spotifyApi.setRefreshToken('');
+      redirect(`/?error=invalidEmail&email=${email}`);
     }
+    
     // If match then post it to db.
     await prisma.user.upsert({
       where: { email },
@@ -38,15 +42,13 @@ export const loader: LoaderFunction = async ({ request }) => {
       },
     });
 
-    caches.set("token", access_token);
-    caches.set("refresh_token", refresh_token);
-    return redirect(`/`);
+    caches.set('token', access_token);
+    caches.set('refresh_token', refresh_token);
+    redirect('/');
   } catch (error) {
-    console.error("Error during callback:", error);
-    return redirect("/?error=callback");
+    console.error('Error during callback:', error);
+    redirect('/?error=callback');
   }
-};
 
-export default function Callback() {
   return null;
 }
