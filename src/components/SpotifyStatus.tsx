@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { CurrentTrackData } from '../types';
 import Image from 'next/image';
 
-export default function SpotifyStatus({ initialTrackData }: { initialTrackData: CurrentTrackData | null }) {
+export default function SpotifyStatus({ initialTrackData }: Readonly<{ initialTrackData: CurrentTrackData | null }>) {
   const [trackData, setTrackData] = useState<CurrentTrackData | null>(initialTrackData);
 
   useEffect(() => {
