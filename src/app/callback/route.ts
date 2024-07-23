@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   const code = url.searchParams.get('code');
 
   if (!code) {
-    return NextResponse.redirect(new URL('/', request.url));
+    return NextResponse.redirect(new URL('/', request.url).origin);
   }
 
   try {
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
     if (!email || email !== process.env.email) {
       spotifyApi.setAccessToken('');
       spotifyApi.setRefreshToken('');
-      return NextResponse.redirect(new URL(`/?error=invalidEmail&email=${email}`, request.url));
+      return NextResponse.redirect(new URL(`/?error=invalidEmail&email=${email}`, request.url).origin);
     }
     
     // If match then post it to db.
@@ -43,9 +43,9 @@ export async function GET(request: NextRequest) {
     caches.set('token', access_token);
     caches.set('refresh_token', refresh_token);
 
-    return NextResponse.redirect(new URL('/', request.url));
+    return NextResponse.redirect(new URL('/', request.url).origin);
   } catch (error) {
     console.error('Error during callback:', error);
-    return NextResponse.redirect(new URL('/?error=callbackError', request.url));
+    return NextResponse.redirect(new URL('/?error=callbackError', request.url).origin);
   }
 }
