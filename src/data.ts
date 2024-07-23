@@ -37,8 +37,8 @@ export const getTokenData = async (): Promise<TokenData> => {
   return { token: token, refreshToken: refresh_token };
 };
 
-export const refreshAccessToken = async (refreshToken: string | null) => {
-  if (!refreshToken) return;
+export const refreshAccessToken = async (refreshToken: string | null): Promise<string | null> => {
+  if (!refreshToken) return null;
 
   try {
     const response = await axios.post(
@@ -68,6 +68,7 @@ export const refreshAccessToken = async (refreshToken: string | null) => {
     return access_token;
   } catch (error) {
     console.error("Error refreshing token:", error);
+    return null;
   }
 };
 
@@ -78,47 +79,52 @@ export const ensureData = async () => {
 };
 
 export const getCurrentPlayingTrack = (): Promise<CurrentTrackData | null> => {
-  // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
     try {
       const { token, refreshToken } = await getTokenData();
-      if (token) {
-        spotifyApi.setAccessToken(token);
-        try {
-          const status = await spotifyApi.getMyCurrentPlayingTrack();
-
-          if (status.body.currently_playing_type === "ad") {
-            resolve({ ...status.body, is_playing: false });
-            return;
-          }
-
-          if (
-            !status.body?.is_playing ||
-            typeof status.body?.is_playing === "undefined"
-          ) {
-            resolve({ ...status.body, is_playing: false });
-            return;
-          }
-
-          resolve(status.body);
-        } catch (error) {
-          console.error("Error fetching current track:", error);
-          if (
-            error instanceof Error &&
-            (error.message.includes("The access token expired") || error.stack?.includes("The access token expired") || error.name.includes("The access token expired"))
-          ) {
-            await refreshAccessToken(refreshToken);
-            const refreshedStatus = await getCurrentPlayingTrack();
-            resolve(refreshedStatus);
-          } else {
-            reject(new Error(error as string));
-          }
-        }
-      } else {
+      if (!token) {
         resolve(null);
+        return;
+      }
+
+      spotifyApi.setAccessToken(token);
+
+      try {
+        const status = await spotifyApi.getMyCurrentPlayingTrack();
+
+        if (status.body.currently_playing_type === "ad") {
+          resolve({ ...status.body, is_playing: false });
+          return;
+        }
+
+        if (!status.body?.is_playing || typeof status.body?.is_playing === "undefined") {
+          resolve({ ...status.body, is_playing: false });
+          return;
+        }
+
+        resolve(status.body);
+      } catch (error) {
+        console.error("Error fetching current track:", error);
+        if (error instanceof Error && 
+            (error.message.includes("The access token expired") || 
+             error.stack?.includes("The access token expired") || 
+             (error as any).body?.error?.message === "The access token expired")) {
+          console.log("Token expired, refreshing...");
+          const newToken = await refreshAccessToken(refreshToken);
+          if (newToken) {
+            console.log("Token refreshed, retrying...");
+            spotifyApi.setAccessToken(newToken);
+            const refreshedStatus = await spotifyApi.getMyCurrentPlayingTrack();
+            resolve(refreshedStatus.body);
+          } else {
+            reject(new Error("Failed to refresh token"));
+          }
+        } else {
+          reject(error);
+        }
       }
     } catch (e) {
-      reject(new Error(e as string));
+      reject(e);
     }
   });
 };
