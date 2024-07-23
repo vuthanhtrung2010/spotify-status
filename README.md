@@ -62,6 +62,7 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://ko-
    - `PORT` is your port number the website listening to. Default listening port will be 3000.
    - `SENTRY_AUTH_TOKEN` (optional for who want to track errors/performance): Get it from [Sentry Dashboard](https://sentry.io/settings/auth-tokens/).
    - `SENTRY_DSN_ADDRESS` (optional for who want to track errors/performance): Get it from your Sentry project.
+   - `BASE_URL` your base URL. Eg: `https://spotify.trung.is-a.dev`
 
 </details>
 
