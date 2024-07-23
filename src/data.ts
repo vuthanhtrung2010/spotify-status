@@ -68,6 +68,22 @@ export const refreshAccessToken = async (refreshToken: string | null): Promise<s
     return access_token;
   } catch (error) {
     console.error("Error refreshing token:", error);
+    if (axios.isAxiosError(error) && error.response?.status === 400) {
+      if (error.response.data.error === 'invalid_grant') {
+        console.log("Refresh token is invalid or revoked. User needs to re-authenticate.");
+        // Clear stored tokens
+        await prisma.user.update({
+          where: { email: process.env.email },
+          data: { token: null, refreshToken: null },
+        });
+        caches.delete("token");
+        caches.delete("refresh_token");
+        // Here, you would typically redirect the user to re-authenticate
+        // This depends on your application structure
+        // For example: throw a custom error that your app can catch and use to redirect the user
+        throw new Error("REAUTHENTICATION_REQUIRED");
+      }
+    }
     return null;
   }
 };

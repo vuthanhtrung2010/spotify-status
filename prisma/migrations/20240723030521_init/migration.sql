@@ -2,8 +2,8 @@
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
-    "token" TEXT NOT NULL,
-    "refreshToken" TEXT NOT NULL,
+    "token" TEXT,
+    "refreshToken" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
