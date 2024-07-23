@@ -39,6 +39,7 @@ export const getTokenData = async (): Promise<TokenData> => {
 
 export const refreshAccessToken = async (refreshToken: string | null) => {
   if (!refreshToken) return;
+
   try {
     const response = await axios.post(
       "https://accounts.spotify.com/api/token",
@@ -104,7 +105,7 @@ export const getCurrentPlayingTrack = (): Promise<CurrentTrackData | null> => {
           console.error("Error fetching current track:", error);
           if (
             error instanceof Error &&
-            error.message.includes("The access token expired")
+            (error.message.includes("The access token expired") || error.stack?.includes("The access token expired") || error.name.includes("The access token expired"))
           ) {
             await refreshAccessToken(refreshToken);
             const refreshedStatus = await getCurrentPlayingTrack();
