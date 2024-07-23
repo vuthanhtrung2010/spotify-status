@@ -137,11 +137,11 @@ export const getCurrentPlayingTrack = (): Promise<CurrentTrackData | null> => {
             reject(new Error("Failed to refresh token"));
           }
         } else {
-          reject(error);
+          reject(error as Error);
         }
       }
     } catch (e) {
-      reject(e);
+      reject(e as Error);
     }
   });
 };
