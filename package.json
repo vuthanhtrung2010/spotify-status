@@ -7,13 +7,14 @@
     "build": "npm-run-all build:schema build:compile",
     "build:compile": "next build",
     "build:schema": "prisma migrate dev --name init",
-    "start": "next start",
+    "start": "dotenv -c -- next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@prisma/client": "^5.17.0",
     "@sentry/nextjs": "^8.19.0",
     "axios": "^1.7.2",
+    "dotenv-cli": "^7.4.2",
     "next": "14.2.5",
     "npm-run-all2": "^6.2.2",
     "react": "^18",
