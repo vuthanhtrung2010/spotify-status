@@ -2,11 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { spotifyApi, prisma, caches } from '../../data';
 
 export async function GET(request: NextRequest) {
-  const url = new URL(request.url);
+  const url = new URL(process.env.BASE_URL as string);
   const code = url.searchParams.get('code');
 
   if (!code) {
-    return NextResponse.redirect(new URL('/', request.url).origin);
+    return NextResponse.redirect(new URL('/', process.env.BASE_URL));
   }
 
   try {
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
     if (!email || email !== process.env.email) {
       spotifyApi.setAccessToken('');
       spotifyApi.setRefreshToken('');
-      return NextResponse.redirect(new URL(`/?error=invalidEmail&email=${email}`, request.url).origin);
+      return NextResponse.redirect(new URL(`/?error=invalidEmail&email=${email}`, process.env.BASE_URL));
     }
     
     // If match then post it to db.
@@ -43,9 +43,9 @@ export async function GET(request: NextRequest) {
     caches.set('token', access_token);
     caches.set('refresh_token', refresh_token);
 
-    return NextResponse.redirect(new URL('/', request.url).origin);
+    return NextResponse.redirect(new URL('/', process.env.BASE_URL));
   } catch (error) {
     console.error('Error during callback:', error);
-    return NextResponse.redirect(new URL('/?error=callbackError', request.url).origin);
+    return NextResponse.redirect(new URL('/?error=callbackError', process.env.BASE_URL));
   }
 }
