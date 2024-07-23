@@ -2,11 +2,12 @@ import axios from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
 import { PrismaClient } from "@prisma/client";
 import { CurrentTrackData } from "./types";
+import "dotenv/config";
 
 export const prisma = new PrismaClient();
 export const caches = new Map();
 
-// Define spotify api everywhere
+// Define spotify API everywhere
 export const spotifyApi = new SpotifyWebApi({
   clientId: process.env.client_id,
   clientSecret: process.env.client_secret,
