@@ -16,7 +16,7 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://ko-
 
 - [nodejs](https://nodejs.org) version 20 or higher, I recommend the latest STABLE version
 - A VPS would be advised, so you don't need to keep your PC/Laptop/RasPi 24/7 online!
-- At least 256MB of RAM and 0.5vCPU
+- At least 256MB of RAM & 0.5vCPU with at least 2GB storage.
 
 </details>
 
@@ -59,7 +59,7 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://ko-
    - `redirect_uri` whatever you set for your domain/website, route `/callback`. Eg: `https://spotify.trung.is-a.dev/callback`
    - `DATABASE_URL` get from your self hosted database. See full list of supported database by prisma ORM [here](https://www.prisma.io/docs/orm/reference/supported-databases).
    - `email` is email that you use to register to Spotify platform.
-   - `PORT` is your port number the website listening to. Default listening port will be 3000 for this branch.
+   - `PORT` is your port number the website listening to. Default listening port will be 3000.
    - `SENTRY_AUTH_TOKEN` (optional for who want to track errors/performance): Get it from [Sentry Dashboard](https://sentry.io/settings/auth-tokens/).
    - `SENTRY_DSN_ADDRESS` (optional for who want to track errors/performance): Get it from your Sentry project.
 
