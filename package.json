@@ -28,7 +28,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/spotify-web-api-node": "^5.0.11",
-    "eslint": "^8",
+    "eslint": "^9.0.0",
     "eslint-config-next": "14.2.5",
     "prisma": "^5.17.0",
     "typescript": "^5"
