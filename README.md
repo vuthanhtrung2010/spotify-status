@@ -16,7 +16,7 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://ko-
 
 - [nodejs](https://nodejs.org) version 20 or higher, I recommend the latest STABLE version
 - A VPS would be advised, so you don't need to keep your PC/Laptop/RasPi 24/7 online!
-- At least 256MB of RAM & 0.5vCPU with at least 2GB storage.
+- At least 2GB of RAM & 0.5 - 0.75vCPU with 2GB storage.
 
 </details>
 
