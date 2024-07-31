@@ -38,7 +38,9 @@ export const getTokenData = async (): Promise<TokenData> => {
   return { token: token, refreshToken: refresh_token };
 };
 
-export const refreshAccessToken = async (refreshToken: string | null): Promise<string | null> => {
+export const refreshAccessToken = async (
+  refreshToken: string | null,
+): Promise<string | null> => {
   if (!refreshToken) return null;
 
   try {
@@ -52,10 +54,10 @@ export const refreshAccessToken = async (refreshToken: string | null): Promise<s
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
           Authorization: `Basic ${Buffer.from(
-            `${process.env.client_id}:${process.env.client_secret!}`
+            `${process.env.client_id}:${process.env.client_secret!}`,
           ).toString("base64")}`,
         },
-      }
+      },
     );
     const { access_token } = response.data;
 
@@ -70,8 +72,10 @@ export const refreshAccessToken = async (refreshToken: string | null): Promise<s
   } catch (error) {
     console.error("Error refreshing token:", error);
     if (axios.isAxiosError(error) && error.response?.status === 400) {
-      if (error.response.data.error === 'invalid_grant') {
-        console.log("Refresh token is invalid or revoked. User needs to re-authenticate.");
+      if (error.response.data.error === "invalid_grant") {
+        console.log(
+          "Refresh token is invalid or revoked. User needs to re-authenticate.",
+        );
         // Clear stored tokens
         await prisma.user.update({
           where: { email: process.env.email },
@@ -114,7 +118,10 @@ export const getCurrentPlayingTrack = (): Promise<CurrentTrackData | null> => {
           return;
         }
 
-        if (!status.body?.is_playing || typeof status.body?.is_playing === "undefined") {
+        if (
+          !status.body?.is_playing ||
+          typeof status.body?.is_playing === "undefined"
+        ) {
           resolve({ ...status.body, is_playing: false });
           return;
         }
@@ -122,10 +129,12 @@ export const getCurrentPlayingTrack = (): Promise<CurrentTrackData | null> => {
         resolve(status.body);
       } catch (error) {
         console.error("Error fetching current track:", error);
-        if (error instanceof Error && 
-            (error.message.includes("The access token expired") || 
-             error.stack?.includes("The access token expired") || 
-             (error as any).body?.error?.message === "The access token expired")) {
+        if (
+          error instanceof Error &&
+          (error.message.includes("The access token expired") ||
+            error.stack?.includes("The access token expired") ||
+            (error as any).body?.error?.message === "The access token expired")
+        ) {
           console.log("Token expired, refreshing...");
           const newToken = await refreshAccessToken(refreshToken);
           if (newToken) {

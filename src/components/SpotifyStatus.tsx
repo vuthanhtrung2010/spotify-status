@@ -1,11 +1,15 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { CurrentTrackData } from '../types';
-import Image from 'next/image';
+import React, { useEffect, useState } from "react";
+import { CurrentTrackData } from "../types";
+import Image from "next/image";
 
-export default function SpotifyStatus({ initialTrackData }: Readonly<{ initialTrackData: CurrentTrackData | null }>) {
-  const [trackData, setTrackData] = useState<CurrentTrackData | null>(initialTrackData);
+export default function SpotifyStatus({
+  initialTrackData,
+}: Readonly<{ initialTrackData: CurrentTrackData | null }>) {
+  const [trackData, setTrackData] = useState<CurrentTrackData | null>(
+    initialTrackData,
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,7 +21,7 @@ export default function SpotifyStatus({ initialTrackData }: Readonly<{ initialTr
         const newTrackData = await res.json();
         setTrackData(newTrackData);
       } catch (error) {
-        console.error('Error fetching track data:', error);
+        console.error("Error fetching track data:", error);
       }
     };
 
@@ -60,7 +64,9 @@ export default function SpotifyStatus({ initialTrackData }: Readonly<{ initialTr
                   className="progress-bar-fill"
                   style={{
                     width: `${
-                      (trackData.progress_ms as number / (track?.duration_ms as number)) * 100
+                      ((trackData.progress_ms as number) /
+                        (track?.duration_ms as number)) *
+                      100
                     }%`,
                   }}
                 ></div>
@@ -69,7 +75,9 @@ export default function SpotifyStatus({ initialTrackData }: Readonly<{ initialTr
             <div className="time-display">
               <span className="start-time">00:00</span>
               <span className="end-time">
-                {new Date(track?.duration_ms as number).toISOString().slice(14, 19)}
+                {new Date(track?.duration_ms as number)
+                  .toISOString()
+                  .slice(14, 19)}
               </span>
             </div>
             <p className="artist-name">
@@ -85,7 +93,9 @@ export default function SpotifyStatus({ initialTrackData }: Readonly<{ initialTr
             </p>
             <p className="album-name">
               on{" "}
-              <a href={track?.album?.external_urls.spotify}>{track?.album?.name}</a>
+              <a href={track?.album?.external_urls.spotify}>
+                {track?.album?.name}
+              </a>
             </p>
           </div>
         </div>

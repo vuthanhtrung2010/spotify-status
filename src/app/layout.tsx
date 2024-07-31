@@ -1,7 +1,7 @@
-import React from 'react';
-import type { Metadata, Viewport } from 'next';
+import React from "react";
+import type { Metadata, Viewport } from "next";
 import "./styles.css";
-import Image from 'next/image';
+import Image from "next/image";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://spotify.trung.is-a.dev"),
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
 };
 
