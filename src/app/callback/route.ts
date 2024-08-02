@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { spotifyApi, prisma, caches } from "../../data";
 
 export async function GET(request: NextRequest) {
-  const url = new URL(process.env.BASE_URL as string);
+  const url = new URL(request.url);
   const code = url.searchParams.get("code");
 
   if (!code) {
