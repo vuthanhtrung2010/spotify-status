@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.17.0",
-    "@sentry/nextjs": "^8.22.0",
+    "@sentry/nextjs": "^8.24.0",
     "axios": "^1.7.3",
     "dotenv": "^16.4.5",
     "dotenv-cli": "^7.4.2",
