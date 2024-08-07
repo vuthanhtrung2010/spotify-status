@@ -13,7 +13,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^5.17.0",
+    "@prisma/client": "^5.18.0",
     "@sentry/nextjs": "^8.24.0",
     "axios": "^1.7.3",
     "dotenv": "^16.4.5",
@@ -32,7 +32,7 @@
     "@types/spotify-web-api-node": "^5.0.11",
     "eslint": "^9.8.0",
     "eslint-config-next": "14.2.5",
-    "prisma": "^5.17.0",
+    "prisma": "^5.18.0",
     "typescript": "^5.5.4"
   }
 }
