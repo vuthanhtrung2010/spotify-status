@@ -132,7 +132,9 @@ body {
 .album-name a {
   color: white;
   text-decoration: none;
-  transition: color 0.3s, text-decoration 0.3s;
+  transition:
+    color 0.3s,
+    text-decoration 0.3s;
 }
 
 .artist-name a:hover,

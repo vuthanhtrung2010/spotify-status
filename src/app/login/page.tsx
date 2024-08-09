@@ -1,7 +1,7 @@
-import { LoaderFunction, redirect } from "@remix-run/node";
-import { spotifyApi } from "~/data";
+import { redirect } from "next/navigation";
+import { spotifyApi } from "@/data";
 
-export const loader: LoaderFunction = async () => {
+export default function Login() {
   const scopes = [
     "user-read-private",
     "user-read-email",
@@ -14,9 +14,5 @@ export const loader: LoaderFunction = async () => {
     "user-read-currently-playing",
   ];
   const authorizeURL = spotifyApi.createAuthorizeURL(scopes, "state");
-  return redirect(authorizeURL);
-};
-
-export default function Login() {
-  return null;
+  redirect(authorizeURL);
 }

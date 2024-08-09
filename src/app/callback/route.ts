@@ -1,12 +1,12 @@
-import { LoaderFunction, redirect } from "@remix-run/node";
-import { caches, prisma, spotifyApi } from "~/data";
+import { NextRequest, NextResponse } from "next/server";
+import { spotifyApi, prisma, caches } from "../../data";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export async function GET(request: NextRequest) {
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
 
   if (!code) {
-    return redirect("/");
+    return NextResponse.redirect(new URL("/", process.env.BASE_URL));
   }
 
   try {
@@ -19,11 +19,15 @@ export const loader: LoaderFunction = async ({ request }) => {
 
     const user_data = await spotifyApi.getMe();
     const email = user_data.body.email;
+
     if (!email || email !== process.env.email) {
       spotifyApi.setAccessToken("");
       spotifyApi.setRefreshToken("");
-      return redirect(`/?error=invalidEmail&email=${email}`);
+      return NextResponse.redirect(
+        new URL(`/?error=invalidEmail&email=${email}`, process.env.BASE_URL),
+      );
     }
+
     // If match then post it to db.
     await prisma.user.upsert({
       where: { email },
@@ -40,13 +44,12 @@ export const loader: LoaderFunction = async ({ request }) => {
 
     caches.set("token", access_token);
     caches.set("refresh_token", refresh_token);
-    return redirect(`/`);
+
+    return NextResponse.redirect(new URL("/", process.env.BASE_URL));
   } catch (error) {
     console.error("Error during callback:", error);
-    return redirect("/?error=callback");
+    return NextResponse.redirect(
+      new URL("/?error=callbackError", process.env.BASE_URL),
+    );
   }
-};
-
-export default function Callback() {
-  return null;
 }
