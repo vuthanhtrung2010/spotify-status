@@ -3,15 +3,16 @@ name: Next.js Build Test
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [22.x, 21.x, 20.x, 'latest']
-    
+        node-version: [22.x, 21.x, 20.x, "latest"]
+
+    # Service containers to run with `runner-job`
     services:
       # Label used to access the service container
       postgres:
@@ -37,7 +38,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
 
       - name: Install pnpm
         run: npm install -g pnpm
