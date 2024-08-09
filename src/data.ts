@@ -117,7 +117,7 @@ export const getCurrentPlayingTrack = (): Promise<CurrentTrackData | null> => {
           resolve({ ...status.body, is_playing: false });
           return;
         }
-        
+
         if (
           !status.body?.is_playing ||
           typeof status.body?.is_playing === "undefined"
