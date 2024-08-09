@@ -113,11 +113,11 @@ export const getCurrentPlayingTrack = (): Promise<CurrentTrackData | null> => {
       try {
         const status = await spotifyApi.getMyCurrentPlayingTrack();
 
-        if (status.body.currently_playing_type === "ad") {
+        if (status.body?.currently_playing_type === "ad") {
           resolve({ ...status.body, is_playing: false });
           return;
         }
-
+        
         if (
           !status.body?.is_playing ||
           typeof status.body?.is_playing === "undefined"
