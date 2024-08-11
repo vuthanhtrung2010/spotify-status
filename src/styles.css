@@ -182,7 +182,7 @@ body {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  font-family: "Roboto", bold;
+  font-family: "Roboto", bold, sans-serif;
   text-align: center;
   color: white;
 }
