@@ -3,11 +3,11 @@ name: Next.js Build Test
 on:
   push:
     branches:
-      - main
+      - master
       - beta
   pull_request:
     branches:
-      - main
+      - master
       - beta
 
 jobs:
