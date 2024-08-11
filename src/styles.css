@@ -1,4 +1,21 @@
 /* Universal reset for margin, padding, and box-sizing */
+
+/* Font faces */
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 *,
 *::before,
 *::after {
@@ -29,7 +46,7 @@ body {
   align-items: center;
   min-width: 37.5em;
   padding: 1.25em;
-  border: 0.0625em solid #ccc;
+  border: 0.125em solid #ccc;
   border-radius: 0.3125em;
   background-color: #0a081f;
   box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.1);
@@ -132,9 +149,7 @@ body {
 .album-name a {
   color: white;
   text-decoration: none;
-  transition:
-    color 0.3s,
-    text-decoration 0.3s;
+  transition: color 0.3s, text-decoration 0.3s;
 }
 
 .artist-name a:hover,
@@ -167,6 +182,7 @@ body {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  font-family: "Roboto", bold;
   text-align: center;
   color: white;
 }
@@ -191,4 +207,9 @@ body {
 
 .animate-float {
   animation: float 2s linear infinite;
+}
+
+.not-playing {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
 }

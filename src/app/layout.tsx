@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata, Viewport } from "next";
-import "./styles.css";
+import "../styles.css";
 import Image from "next/image";
 
 export const metadata: Metadata = {

@@ -34,7 +34,7 @@ export default function SpotifyStatus({
     return (
       <div className="container" id="container">
         <div className="status" id="status">
-          <p>Currently not playing any track?.</p>
+          <p className="not-playing">Currently not playing any track?</p>
         </div>
       </div>
     );
