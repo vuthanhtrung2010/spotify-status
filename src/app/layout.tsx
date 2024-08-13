@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata, Viewport } from "next";
 import "../styles.css";
 import Image from "next/image";
+import config from "../config.json";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://spotify.trung.is-a.dev"),
@@ -34,13 +35,13 @@ export default function RootLayout({
         <div id="container" className="container">
           <div className="user-info" id="user-info">
             <Image
-              src="/assets/avatar.png"
+              src={config.avatar ? config.avatar : "/assets/avatar.png"}
               alt="User Avatar"
               className="user-avatar"
               width={300}
               height={300}
             />
-            <div className="user-name">Vũ Thành Trung</div>
+            <div className="user-name">{config.name}</div>
           </div>
 
           {children}
