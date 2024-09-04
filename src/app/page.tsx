@@ -1,6 +1,6 @@
 import React from "react";
-import { getCurrentPlayingTrack } from "../data";
-import { CurrentTrackData } from "../types";
+import { getCurrentPlayingTrack } from "@/data";
+import { CurrentTrackData } from "@/types";
 import SpotifyStatus from "../components/SpotifyStatus";
 
 async function getTrackData(): Promise<CurrentTrackData | null> {
