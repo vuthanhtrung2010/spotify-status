@@ -43,8 +43,8 @@ importers:
         version: 5.0.2
     devDependencies:
       '@types/node':
-        specifier: ^22.5.2
-        version: 22.5.2
+        specifier: ^22.5.3
+        version: 22.5.3
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.5
@@ -765,8 +765,8 @@ packages:
   '@types/mysql@2.15.22':
     resolution: {integrity: sha512-wK1pzsJVVAjYCSZWQoWHziQZbNggXFDUEIGf54g4ZM/ERuP86uGdWeKZWMYlqTPMZfHJJvLPyogXGvCOg87yLQ==}
 
-  '@types/node@22.5.2':
-    resolution: {integrity: sha512-acJsPTEqYqulZS/Yp/S3GgeE6GZ0qYODUR8aVr/DkhHQ8l9nd4j5x1/ZJy9/gHrRlFMqkO6i0I3E27Alu4jjPg==}
+  '@types/node@22.5.3':
+    resolution: {integrity: sha512-njripolh85IA9SQGTAqbmnNZTdxv7X/4OYGPz8tgy5JDr8MP+uDBa921GpYEoDDnwm0Hmn5ZPeJgiiSTPoOzkQ==}
 
   '@types/pg-pool@2.0.4':
     resolution: {integrity: sha512-qZAvkv1K3QbmHHFYSNRYPkRjOWRLBYrL4B9c+wG0GSVGBw0NtJwPcgx/DSddeDJvRGMHCEQ4VMEVfuJ/0gZ3XQ==}
@@ -1315,8 +1315,8 @@ packages:
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
 
-  eslint-plugin-react@7.35.1:
-    resolution: {integrity: sha512-B5ok2JgbaaWn/zXbKCGgKDNL2tsID3Pd/c/yvjcpsd9HQDwyYc/TQv3AZMmOvrJgCs3AnYNUHRCQEMMQAYJ7Yg==}
+  eslint-plugin-react@7.35.2:
+    resolution: {integrity: sha512-Rbj2R9zwP2GYNcIak4xoAMV57hrBh3hTaR0k7hVjwCQgryE/pw5px4b13EYjduOI0hfXyZhwBxaGpOTbWSGzKQ==}
     engines: {node: '>=4'}
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7
@@ -1416,8 +1416,8 @@ packages:
   flatted@3.3.1:
     resolution: {integrity: sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==}
 
-  follow-redirects@1.15.6:
-    resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
+  follow-redirects@1.15.8:
+    resolution: {integrity: sha512-xgrmBhBToVKay1q2Tao5LI26B83UhrB/vM1avwVSDzt8rx3rO6AizBAaF46EgksTVr+rFTQaqZZ9MVBfUe4nig==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -3312,7 +3312,7 @@ snapshots:
 
   '@types/connect@3.4.36':
     dependencies:
-      '@types/node': 22.5.2
+      '@types/node': 22.5.3
 
   '@types/eslint-scope@3.7.7':
     dependencies:
@@ -3332,9 +3332,9 @@ snapshots:
 
   '@types/mysql@2.15.22':
     dependencies:
-      '@types/node': 22.5.2
+      '@types/node': 22.5.3
 
-  '@types/node@22.5.2':
+  '@types/node@22.5.3':
     dependencies:
       undici-types: 6.19.8
 
@@ -3344,7 +3344,7 @@ snapshots:
 
   '@types/pg@8.6.1':
     dependencies:
-      '@types/node': 22.5.2
+      '@types/node': 22.5.3
       pg-protocol: 1.6.1
       pg-types: 2.2.0
 
@@ -3623,7 +3623,7 @@ snapshots:
 
   axios@1.7.7:
     dependencies:
-      follow-redirects: 1.15.6
+      follow-redirects: 1.15.8
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -3976,7 +3976,7 @@ snapshots:
       eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@7.2.0(eslint@9.9.1)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.30.0(eslint@9.9.1))(eslint@9.9.1)
       eslint-plugin-import: 2.30.0(@typescript-eslint/parser@7.2.0(eslint@9.9.1)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@9.9.1)
       eslint-plugin-jsx-a11y: 6.9.0(eslint@9.9.1)
-      eslint-plugin-react: 7.35.1(eslint@9.9.1)
+      eslint-plugin-react: 7.35.2(eslint@9.9.1)
       eslint-plugin-react-hooks: 4.6.2(eslint@9.9.1)
     optionalDependencies:
       typescript: 5.5.4
@@ -4075,7 +4075,7 @@ snapshots:
     dependencies:
       eslint: 9.9.1
 
-  eslint-plugin-react@7.35.1(eslint@9.9.1):
+  eslint-plugin-react@7.35.2(eslint@9.9.1):
     dependencies:
       array-includes: 3.1.8
       array.prototype.findlast: 1.2.5
@@ -4214,7 +4214,7 @@ snapshots:
 
   flatted@3.3.1: {}
 
-  follow-redirects@1.15.6: {}
+  follow-redirects@1.15.8: {}
 
   for-each@0.3.3:
     dependencies:
@@ -4537,7 +4537,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 22.5.2
+      '@types/node': 22.5.3
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
