@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { spotifyApi, prisma, caches } from "../../data";
+import { spotifyApi, prisma, caches } from "@/data";
 
 export async function GET(request: NextRequest) {
   const url = new URL(request.url);

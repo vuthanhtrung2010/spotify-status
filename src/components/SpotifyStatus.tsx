@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { CurrentTrackData } from "../types";
+import { CurrentTrackData } from "@/types";
 import Image from "next/image";
+import chalk from "chalk";
 
 export default function SpotifyStatus({
   initialTrackData,
@@ -12,11 +13,11 @@ export default function SpotifyStatus({
   );
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (): Promise<void> => {
       try {
         const res = await fetch(`/api/current-track?t=${Date.now()}`);
         if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
+          console.error(chalk.red(`HTTP error! status: ${res.status}`));
         }
         const newTrackData = await res.json();
         setTrackData(newTrackData);
@@ -25,7 +26,7 @@ export default function SpotifyStatus({
       }
     };
 
-    fetchData(); // Fetch immediately on mount
+    fetchData().then(() => {}); // Fetch immediately on mount
     const id = setInterval(fetchData, 1000);
     return () => clearInterval(id);
   }, []);
