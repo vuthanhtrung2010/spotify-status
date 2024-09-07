@@ -5,7 +5,7 @@ import Image from "next/image";
 import config from "../config.json";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://spotify.trung.is-a.dev"),
+  metadataBase: new URL(process.env.BASE_URL || "https://spotify.trung.is-a.dev"),
   title: "Trung's Spotify Status",
   description: "A website which displays my Spotify status.",
   openGraph: {
