@@ -10,12 +10,14 @@ export const metadata: Metadata = {
   description: "A website which displays my Spotify status.",
   openGraph: {
     title: "Vũ Thành Trung",
+    description: "A website which displays my Spotify status.",
     images: ["/assets/banner.png"],
   },
   twitter: {
     title: "Vũ Thành Trung",
     card: "summary_large_image",
     description: "A website which displays my Spotify status.",
+    images: ["/assets/banner.png"],
   },
 };
 
