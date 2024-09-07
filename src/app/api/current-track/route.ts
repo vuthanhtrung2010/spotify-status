@@ -9,7 +9,7 @@ export async function GET() {
     return NextResponse.json(trackData);
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to fetch track data" },
+      { error: `Failed to fetch track data. Error: ${error}` },
       { status: 500 },
     );
   }

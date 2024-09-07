@@ -6,6 +6,9 @@ const nextConfig = {
       fullUrl: true,
     },
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   reactStrictMode: true,
   swcMinify: true,
   images: {

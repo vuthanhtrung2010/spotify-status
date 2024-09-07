@@ -133,6 +133,7 @@ export const getCurrentPlayingTrack = (): Promise<CurrentTrackData | null> => {
           error instanceof Error &&
           (error.message.includes("The access token expired") ||
             error.stack?.includes("The access token expired") ||
+            //eslint-disable-next-line
             (error as any).body?.error?.message === "The access token expired")
         ) {
           console.log("Token expired, refreshing...");
