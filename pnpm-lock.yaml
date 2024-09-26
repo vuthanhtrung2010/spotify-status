@@ -59,7 +59,7 @@ importers:
         version: 8.42.3
       '@types/node':
         specifier: ^22.5.5
-        version: 22.7.2
+        version: 22.7.3
       '@types/react':
         specifier: ^18.3.8
         version: 18.3.9
@@ -838,8 +838,8 @@ packages:
   '@types/mysql@2.15.26':
     resolution: {integrity: sha512-DSLCOXhkvfS5WNNPbfn2KdICAmk8lLc+/PNvnPnF7gOdMZCxopXduqv0OQ13y/yA/zXTSikZZqVgybUxOEg6YQ==}
 
-  '@types/node@22.7.2':
-    resolution: {integrity: sha512-866lXSrpGpgyHBZUa2m9YNWqHDjjM0aBTJlNtYaGEw4rqY/dcD7deRVTbBBAJelfA7oaGDbNftXF/TL/A6RgoA==}
+  '@types/node@22.7.3':
+    resolution: {integrity: sha512-qXKfhXXqGTyBskvWEzJZPUxSslAiLaB6JGP1ic/XTH9ctGgzdgYguuLP1C601aRTSDNlLb0jbKqXjZ48GNraSA==}
 
   '@types/pg-pool@2.0.6':
     resolution: {integrity: sha512-TaAUE5rq2VQYxab5Ts7WZhKNmuN78Q6PiFonTDdpbx8a1H0M1vhy3rhiMjl+e2iHmogyMw7jZF4FrE6eJUy5HQ==}
@@ -2515,8 +2515,8 @@ packages:
       uglify-js:
         optional: true
 
-  terser@5.33.0:
-    resolution: {integrity: sha512-JuPVaB7s1gdFKPKTelwUyRq5Sid2A3Gko2S0PncwdBq7kN9Ti9HPWDQ06MPsEDGsZeVESjKEnyGy68quBk1w6g==}
+  terser@5.34.0:
+    resolution: {integrity: sha512-y5NUX+U9HhVsK/zihZwoq4r9dICLyV2jXGOriDAVOeKhq3LKVjgJbGO90FisozXLlJfvjHqgckGmJFBb9KYoWQ==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -3533,7 +3533,7 @@ snapshots:
 
   '@types/connect@3.4.36':
     dependencies:
-      '@types/node': 22.7.2
+      '@types/node': 22.7.3
 
   '@types/eslint-scope@3.7.7':
     dependencies:
@@ -3557,9 +3557,9 @@ snapshots:
 
   '@types/mysql@2.15.26':
     dependencies:
-      '@types/node': 22.7.2
+      '@types/node': 22.7.3
 
-  '@types/node@22.7.2':
+  '@types/node@22.7.3':
     dependencies:
       undici-types: 6.19.8
 
@@ -3569,7 +3569,7 @@ snapshots:
 
   '@types/pg@8.6.1':
     dependencies:
-      '@types/node': 22.7.2
+      '@types/node': 22.7.3
       pg-protocol: 1.7.0
       pg-types: 2.2.0
 
@@ -4880,7 +4880,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 22.7.2
+      '@types/node': 22.7.3
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -5523,10 +5523,10 @@ snapshots:
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
-      terser: 5.33.0
+      terser: 5.34.0
       webpack: 5.93.0
 
-  terser@5.33.0:
+  terser@5.34.0:
     dependencies:
       '@jridgewell/source-map': 0.3.6
       acorn: 8.12.1
