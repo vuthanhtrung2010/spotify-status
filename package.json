@@ -16,9 +16,9 @@
     "eslint": "$eslint"
   },
   "dependencies": {
-    "@prisma/client": "^6.0.0",
-    "@sentry/nextjs": "^8.40.0",
-    "axios": "^1.7.7",
+    "@prisma/client": "^5.22.0",
+    "@sentry/nextjs": "^8.41.0",
+    "axios": "^1.7.8",
     "chalk": "^5.3.0",
     "dotenv": "^16.4.5",
     "dotenv-cli": "^7.4.4",
@@ -32,20 +32,20 @@
   "devDependencies": {
     "@eslint/compat": "^1.2.3",
     "@eslint/eslintrc": "^3.2.0",
-    "@eslint/js": "^9.15.0",
+    "@eslint/js": "^9.16.0",
     "@types/eslint__js": "^8.42.3",
-    "@types/node": "^22.9.2",
+    "@types/node": "^22.10.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/spotify-web-api-node": "^5.0.11",
-    "eslint": "^9.15.0",
+    "eslint": "^9.16.0",
     "eslint-config-next": "15.0.3",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react-hooks": "^5.0.0",
-    "prettier": "3.4.1",
-    "prisma": "^6.0.0",
+    "prettier": "3.3.3",
+    "prisma": "^5.22.0",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.15.0"
+    "typescript-eslint": "^8.16.0"
   }
 }
