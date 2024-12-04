@@ -6,7 +6,7 @@ import config from "../config.json";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.BASE_URL || "https://spotify.trung.is-a.dev",
+    process.env.BASE_URL || "https://spotify.devtrung.tech",
   ),
   title: "Trung's Spotify Status",
   description: "A website which displays my Spotify status.",
