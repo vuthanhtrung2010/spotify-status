@@ -62,7 +62,7 @@ importers:
         version: 22.10.1
       '@types/react':
         specifier: ^19.0.0
-        version: 19.0.0
+        version: 19.0.1
       '@types/react-dom':
         specifier: ^19.0.0
         version: 19.0.1
@@ -865,8 +865,8 @@ packages:
   '@types/react-dom@19.0.1':
     resolution: {integrity: sha512-hljHij7MpWPKF6u5vojuyfV0YA4YURsQG7KT6SzV0Zs2BXAtgdTxG6A229Ub/xiWV4w/7JL8fi6aAyjshH4meA==}
 
-  '@types/react@19.0.0':
-    resolution: {integrity: sha512-MY3oPudxvMYyesqs/kW1Bh8y9VqSmf+tzqw3ae8a9DZW68pUe3zAdHeI1jc6iAysuRdACnVknHP8AhwD4/dxtg==}
+  '@types/react@19.0.1':
+    resolution: {integrity: sha512-YW6614BDhqbpR5KtUYzTA+zlA7nayzJRA9ljz9CQoxthR0sDisYZLuvSMsil36t4EH/uAt8T52Xb4sVw17G+SQ==}
 
   '@types/shimmer@1.2.0':
     resolution: {integrity: sha512-UE7oxhQLLd9gub6JKIAhDq06T0F6FnztwMNRvYgjeQSBeMc1ZG/tA47EwfduvkuQS8apbkM/lpLpWsaCeYsXVg==}
@@ -3448,9 +3448,9 @@ snapshots:
 
   '@types/react-dom@19.0.1':
     dependencies:
-      '@types/react': 19.0.0
+      '@types/react': 19.0.1
 
-  '@types/react@19.0.0':
+  '@types/react@19.0.1':
     dependencies:
       csstype: 3.1.3
 
