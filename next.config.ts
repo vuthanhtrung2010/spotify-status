@@ -29,6 +29,12 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  webpack(config, { isServer }) {
+    if (!isServer) {
+      config.devtool = "hidden-source-map";
+    }
+    return config;
+  },
 };
 
 export default withSentryConfig(nextConfig, {
