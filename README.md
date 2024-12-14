@@ -38,9 +38,9 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://ko-
 
 **NOTE:** _You can do the exact same configuration inside of the `.env.example` file, just make sure to rename it to `.env` or use environment variables!_
 
-1.  Ensure that you have installed all node modules by running `npm i`
+1.  Ensure that you have installed all node modules by running `pnpm i`
 2.  Ensure that you have renamed `.env.example` to `.env` and added environment variables
-3.  Now run `npm run build` then run `npm start` or `npm start` or `pm2 start npm --name Status -- start` if you using a VPS to run the website as production mode. You can also run the website as developer mode by `npm run dev` or `pm2 start "npm run dev" --name Status`. Might add `npx` to the prefix of `pm2` if you are not using the runtime version!
+3.  Now run `pnpm run build` then run `pnpm start` or `pnpm start` or `pm2 start pnpm --name Status -- start` if you using a VPS to run the website as production mode. You can also run the website as developer mode by `pnpm run dev` or `pm2 start "pnpm run dev" --name Status`. Might add `npx` to the prefix of `pm2` if you are not using the runtime version!
 4.  Now go to the `/login` route and login to your Spotify Account!
 5.  Enjoy!
 
