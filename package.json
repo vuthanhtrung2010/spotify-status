@@ -12,9 +12,6 @@
     "start": "dotenv -c -- next start",
     "lint": "next lint"
   },
-  "overrides": {
-    "eslint": "$eslint"
-  },
   "dependencies": {
     "@prisma/client": "^6.1.0",
     "@sentry/nextjs": "^8.47.0",
