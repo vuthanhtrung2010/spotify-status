@@ -3,6 +3,8 @@ import type { Metadata, Viewport } from "next";
 import "../styles.css";
 import Image from "next/image";
 import config from "../config.json";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -64,6 +66,8 @@ export default function RootLayout({
           </div>
         </div>
       </body>
+      <SpeedInsights />
+      <Analytics />
     </html>
   );
 }
