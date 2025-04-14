@@ -68,10 +68,10 @@ importers:
         version: 22.14.1
       '@types/react':
         specifier: ^19.0.10
-        version: 19.1.1
+        version: 19.1.2
       '@types/react-dom':
         specifier: ^19.0.4
-        version: 19.1.2(@types/react@19.1.1)
+        version: 19.1.2(@types/react@19.1.2)
       '@types/spotify-web-api-node':
         specifier: ^5.0.11
         version: 5.0.11
@@ -1111,8 +1111,8 @@ packages:
     peerDependencies:
       '@types/react': ^19.0.0
 
-  '@types/react@19.1.1':
-    resolution: {integrity: sha512-ePapxDL7qrgqSF67s0h9m412d9DbXyC1n59O2st+9rjuuamWsZuD2w55rqY12CbzsZ7uVXb5Nw0gEp9Z8MMutQ==}
+  '@types/react@19.1.2':
+    resolution: {integrity: sha512-oxLPMytKchWGbnQM9O7D67uPa9paTNxO7jVoNMXgkkErULBPhPARCfkKL9ytcIJJRGjbsVwW4ugJzyFFvm/Tiw==}
 
   '@types/shimmer@1.2.0':
     resolution: {integrity: sha512-UE7oxhQLLd9gub6JKIAhDq06T0F6FnztwMNRvYgjeQSBeMc1ZG/tA47EwfduvkuQS8apbkM/lpLpWsaCeYsXVg==}
@@ -3938,11 +3938,11 @@ snapshots:
       pg-protocol: 1.8.0
       pg-types: 2.2.0
 
-  '@types/react-dom@19.1.2(@types/react@19.1.1)':
+  '@types/react-dom@19.1.2(@types/react@19.1.2)':
     dependencies:
-      '@types/react': 19.1.1
+      '@types/react': 19.1.2
 
-  '@types/react@19.1.1':
+  '@types/react@19.1.2':
     dependencies:
       csstype: 3.1.3
 
