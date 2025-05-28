@@ -65,7 +65,7 @@ importers:
         version: 8.42.3
       '@types/node':
         specifier: ^22.13.5
-        version: 22.15.23
+        version: 22.15.24
       '@types/react':
         specifier: ^19.0.10
         version: 19.1.6
@@ -949,8 +949,8 @@ packages:
   '@types/mysql@2.15.26':
     resolution: {integrity: sha512-DSLCOXhkvfS5WNNPbfn2KdICAmk8lLc+/PNvnPnF7gOdMZCxopXduqv0OQ13y/yA/zXTSikZZqVgybUxOEg6YQ==}
 
-  '@types/node@22.15.23':
-    resolution: {integrity: sha512-7Ec1zaFPF4RJ0eXu1YT/xgiebqwqoJz8rYPDi/O2BcZ++Wpt0Kq9cl0eg6NN6bYbPnR67ZLo7St5Q3UK0SnARw==}
+  '@types/node@22.15.24':
+    resolution: {integrity: sha512-w9CZGm9RDjzTh/D+hFwlBJ3ziUaVw7oufKA3vOFSOZlzmW9AkZnfjPb+DLnrV6qtgL/LNmP0/2zBNCFHL3F0ng==}
 
   '@types/pg-pool@2.0.6':
     resolution: {integrity: sha512-TaAUE5rq2VQYxab5Ts7WZhKNmuN78Q6PiFonTDdpbx8a1H0M1vhy3rhiMjl+e2iHmogyMw7jZF4FrE6eJUy5HQ==}
@@ -3736,7 +3736,7 @@ snapshots:
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 22.15.23
+      '@types/node': 22.15.24
 
   '@types/eslint-scope@3.7.7':
     dependencies:
@@ -3762,9 +3762,9 @@ snapshots:
 
   '@types/mysql@2.15.26':
     dependencies:
-      '@types/node': 22.15.23
+      '@types/node': 22.15.24
 
-  '@types/node@22.15.23':
+  '@types/node@22.15.24':
     dependencies:
       undici-types: 6.21.0
 
@@ -3774,7 +3774,7 @@ snapshots:
 
   '@types/pg@8.6.1':
     dependencies:
-      '@types/node': 22.15.23
+      '@types/node': 22.15.24
       pg-protocol: 1.10.0
       pg-types: 2.2.0
 
@@ -3796,7 +3796,7 @@ snapshots:
 
   '@types/tedious@4.0.14':
     dependencies:
-      '@types/node': 22.15.23
+      '@types/node': 22.15.24
 
   '@typescript-eslint/eslint-plugin@8.32.0(@typescript-eslint/parser@8.32.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)':
     dependencies:
@@ -5084,7 +5084,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 22.15.23
+      '@types/node': 22.15.24
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
