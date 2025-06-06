@@ -2,5 +2,7 @@
     "sonarlint.connectedMode.project": {
         "connectionId": "vuthanhtrung2010",
         "projectKey": "vuthanhtrung2010_spotify-status"
-    }
+    },
+    "IDX.aI.enableInlineCompletion": true,
+    "IDX.aI.enableCodebaseIndexing": true
 }
