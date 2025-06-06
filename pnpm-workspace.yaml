@@ -5,3 +5,4 @@ onlyBuiltDependencies:
   - '@vercel/speed-insights'
   - prisma
   - sharp
+  - unrs-resolver
