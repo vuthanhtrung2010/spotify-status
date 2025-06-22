@@ -8,7 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.BASE_URL || "https://spotify.devtrung.tech",
+    process.env.BASE_URL || "https://spotify.trunghsgs.edu.vn",
   ),
   title: "Trung's Spotify Status",
   description: "A website which displays my Spotify status.",
