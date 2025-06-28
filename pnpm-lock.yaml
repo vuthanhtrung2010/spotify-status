@@ -27,8 +27,8 @@ importers:
         specifier: ^5.4.1
         version: 5.4.1
       dotenv:
-        specifier: ^16.5.0
-        version: 16.6.1
+        specifier: ^17.0.0
+        version: 17.0.0
       dotenv-cli:
         specifier: ^8.0.0
         version: 8.0.0
@@ -1605,6 +1605,10 @@ packages:
 
   dotenv@16.6.1:
     resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
+    engines: {node: '>=12'}
+
+  dotenv@17.0.0:
+    resolution: {integrity: sha512-A0BJ5lrpJVSfnMMXjmeO0xUnoxqsBHWCoqqTnGwGYVdnctqXXUEhJOO7LxmgxJon9tEZFGpe0xPRX0h2v3AANQ==}
     engines: {node: '>=12'}
 
   dunder-proto@1.0.1:
@@ -4605,6 +4609,8 @@ snapshots:
   dotenv-expand@10.0.0: {}
 
   dotenv@16.6.1: {}
+
+  dotenv@17.0.0: {}
 
   dunder-proto@1.0.1:
     dependencies:

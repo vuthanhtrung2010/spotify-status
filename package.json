@@ -20,7 +20,7 @@
     "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.10.0",
     "chalk": "^5.4.1",
-    "dotenv": "^16.5.0",
+    "dotenv": "^17.0.0",
     "dotenv-cli": "^8.0.0",
     "next": "15.3.4",
     "npm-run-all2": "^8.0.4",
