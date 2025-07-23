@@ -59,11 +59,9 @@ That's why I'm asking everyone to [**donate a little bit of money**](https://ko-
    - `client_secret` you can get from: [Spotify Developer Dashboard](https://developer.spotify.com)
    - `client_id` you can get from: [Spotify Developer Dashboard](https://developer.spotify.com)
    - `redirect_uri` whatever you set for your domain/website, route `/callback`. Eg: `https://spotify.trunghsgs.edu.vn/callback`
-   - `DATABASE_URL` get from your self hosted database. See full list of supported database by prisma ORM [here](https://www.prisma.io/docs/orm/reference/supported-databases).
+   - `DATABASE_URL` get from your self hosted database. PostgreSQL. See the list of supported versions by Prisma [here](https://www.prisma.io/docs/orm/reference/supported-databases)
    - `email` is email that you use to register to Spotify platform.
    - `PORT` is your port number the website listening to. Default listening port will be 3000.
-   - `SENTRY_AUTH_TOKEN` (optional for who want to track errors/performance): Get it from [Sentry Dashboard](https://sentry.io/settings/auth-tokens/).
-   - `SENTRY_DSN_ADDRESS` (optional for who want to track errors/performance): Get it from your Sentry project.
    - `BASE_URL` your base URL. Eg: `https://spotify.trunghsgs.edu.vn`
 
 </details>
