@@ -7,7 +7,7 @@
 First of all, thanks for using this Source Code, it was and is a ton of work to create and maintain it!
 That's why I'm asking everyone to [**donate a little bit of money**](https://ko-fi.com/devtrung) (via Paypal through ko-fi) or if that's not possible, then join my [Discord Server](https://discord.gg/5q6zxM5vnT)!
 
-**NOTE:** If you are gonna deploy on CloudFlare workers/pages please use [this repo](https://github.com/vuthanhtrung2010/spotify-status-cloudflare-d1)
+**NOTE:** If you are gonna deploy on Cloudflare workers/pages please use [this repo](https://github.com/vuthanhtrung2010/spotify-status-cloudflare-d1)
 
 # Installation Guide 🔥
 
