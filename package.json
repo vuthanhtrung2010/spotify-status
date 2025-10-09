@@ -42,7 +42,7 @@
     "eslint-config-next": "15.5.4",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.5.0",
-    "eslint-plugin-react-hooks": "^6.0.0",
+    "eslint-plugin-react-hooks": "^7.0.0",
     "prettier": "3.6.2",
     "prisma": "^6.10.1",
     "typescript": "^5.8.3",
